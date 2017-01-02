@@ -1,0 +1,81 @@
+
+
+/*Css para la barra de navegación principal*/
+
+div.navbar {    
+    background-color: #313b3d;
+    border-color: transparent;
+    width: 100%;
+    margin:auto;
+}
+
+nav {
+    float: left; /* Desplazamos el nav hacia la izquierda */
+}
+
+nav ul {
+    list-style: none;
+    overflow: hidden; /* Limpiamos errores de float */
+}
+
+nav ul li {
+    float: left;
+    font-size: 30px;
+    padding:20px;
+
+}
+
+nav ul li a {
+    display: block; /* Convertimos los elementos a en elementos bloque para manipular el padding */
+    padding: 20px;
+    color: #FFB03B;
+    text-decoration:none; 
+
+}
+
+nav ul li a:hover{
+
+    text-decoration:none;
+    color: #37a000;
+}
+
+li.active a{
+    color: #37a000 !important;
+}
+
+/*Css footer*/
+
+.footer {
+    width: 100%;
+    background-color: #313b3d;
+    position: relative;
+    z-index: 1;
+}
+.footer .footer-top {
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+}
+.footer .widget-title, .footer .widget-title a {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    color: #999;
+}
+.footer .widget-title{
+    padding-bottom: 20px;
+    font-family: 'Satisfy', sans-serif;
+    font-size: 44px;
+    color: #37a000;
+}
+.footer .widget, .footer address {
+    color: #999;
+    text-transform: none;
+    font-style: normal;
+    padding-bottom: 15px;
+}
+.footer .navigation, .footer .social-list {
+    float: none;
+    margin-bottom: 20px;
+}
+
+
