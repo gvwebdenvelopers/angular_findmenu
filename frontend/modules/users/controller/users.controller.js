@@ -15,7 +15,7 @@ app.controller('menuCtrl', function ($scope, $uibModal, UsersService, $rootScope
     };
 
     $scope.logout = function () {
-        //UsersService.logout();
+        UsersService.logout();
     };
     
     //scrollup está en footer.php
@@ -29,7 +29,7 @@ app.controller('menuCtrl', function ($scope, $uibModal, UsersService, $rootScope
 
 app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
     //CommonService, $location, UsersService, twitterService, facebookService, $timeout, cookiesService) {
-        CommonService, $location, UsersService,  $timeout) {
+        CommonService, $location, UsersService,  $timeout, cookiesService) {
     $scope.form = {
         email: "",
         pass: ""
@@ -150,7 +150,7 @@ app.controller('signupCtrl', function ($scope, services, $location, $timeout, Co
             "password": $scope.signup.inputPass, "password2": $scope.signup.inputPass2,"usertype": $scope.signup.inputType}; 
         var data_users_JSON = JSON.stringify(data);
         services.post('users', 'alta', data_users_JSON).then(function (response) {
-            console.log(response);
+            //console.log(response);
             if (response.success) {
                 $timeout(function () {
                     $location.path('/');

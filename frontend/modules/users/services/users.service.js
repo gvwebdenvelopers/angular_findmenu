@@ -1,7 +1,7 @@
 //app.factory("UsersService", ['$location', '$rootScope', 'services', 'facebookService', 'cookiesService', 'twitterService',
 //function ($location, $rootScope, services, facebookService, cookiesService, twitterService) {
-    app.factory("UsersService", ['$location', '$rootScope', 'services', 
-    function ($location, $rootScope, services) {
+    app.factory("UsersService", ['$location', '$rootScope', 'services', 'cookiesService',
+    function ($location, $rootScope, services, cookiesService) {
         var service = {};
         service.login = login;
         service.logout = logout;
@@ -10,7 +10,7 @@
 function login(){
     $rootScope.accederV = true;
 }
-        /*function login() {
+        function login() {
             //al cargarse la pagina por primera vez, user es undefined
             var user = cookiesService.GetCredentials();
             if (user) {
@@ -34,11 +34,11 @@ function login(){
             } else {
                 $rootScope.accederV = true;
             }
-        }*/
+        }
 
-       /* function logout() {
-            facebookService.logout();
-            twitterService.clearCache();
+        function logout() {
+            //facebookService.logout();
+            //twitterService.clearCache();
             cookiesService.ClearCredentials();
 
             $rootScope.accederV = true;
@@ -52,6 +52,6 @@ function login(){
 
             $rootScope.logoutV = false;
             $location.path("/");
-        }*/
+        }
 }]);
 
