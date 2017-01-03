@@ -44,6 +44,7 @@ function handlerRouter() {
 }
 
 function handlerModule($URI_module, $URI_function) {
+    
     $modules = simplexml_load_file('resources/modules.xml');
     $exist = false;
 
@@ -59,9 +60,7 @@ function handlerModule($URI_module, $URI_function) {
                 $controllerClass = "controller_" . $URI_module;
                 $obj = new $controllerClass;
             } else {
-                //die($URI_module . ' - Controlador no encontrado');
-                //showErrorPage(1, "", 'HTTP/1.0 400 Bad Request'.$path, 400);
-                handlerModule('home', 'init');
+               echo json_encode($obj['error']=404);
             }
 
             handlerfunction(((String) $module->name), $obj, $URI_function);
@@ -69,6 +68,7 @@ function handlerModule($URI_module, $URI_function) {
         }
     }
     if (!$exist) {
+        echo json_encode("estoy en handler module no exist: ". $URI_module);
         echo json_encode($obj['error'] = 404);
     }
 }

@@ -149,7 +149,7 @@ app.controller('signupCtrl', function ($scope, services, $location, $timeout, Co
         var data = { "user_email": $scope.signup.inputEmail,
             "password": $scope.signup.inputPass, "password2": $scope.signup.inputPass2,"usertype": $scope.signup.inputType};
         var data_users_JSON = JSON.stringify(data);
-        services.post('user', 'signup_user', data_users_JSON).then(function (response) {
+        services.post('users', 'signup_user', data_users_JSON).then(function (response) {
             console.log(response);
             if (response.success) {
                 $timeout(function () {

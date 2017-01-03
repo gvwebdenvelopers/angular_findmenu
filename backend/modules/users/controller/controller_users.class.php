@@ -10,9 +10,9 @@ class controller_users {
     }
 
     ////////////////////////////////////////////////////begin signup///////////////////////////////////////////
-    function signup() { //refactorizar loadView para hacer los requires allí     
-        loadView('modules/users/view/', 'signup.php');
-    }
+    //function signup() { //refactorizar loadView para hacer los requires allí     
+       // loadView('modules/users/view/', 'signup.php');
+    //}
 
     public function signup_user() {
         $jsondata = array();
