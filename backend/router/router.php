@@ -21,7 +21,7 @@ if (PRODUCTION) { //estamos en producción
 session_start();
 $_SESSION['module'] = "";
 
-//funcionalidad añadida para angular
+//funcionalidad añadida para angular para poder coger losdatos de angular a php
 $filter = inputfilter::getInstance();
 $_POST = json_decode(file_get_contents('php://input'), true);
 $_POST = $filter->process($_POST);
@@ -68,7 +68,7 @@ function handlerModule($URI_module, $URI_function) {
         }
     }
     if (!$exist) {
-        echo json_encode("estoy en handler module no exist: ". $URI_module);
+        
         echo json_encode($obj['error'] = 404);
     }
 }
@@ -85,6 +85,7 @@ function handlerFunction($module, $obj, $URI_function) {
         }
     }
     if (!$exist) {
+        echo json_encode("estoy en handler function no exist: ". $URI_function);
         echo json_encode($obj['error'] = 404);
     } else {
         //$obj->$event();

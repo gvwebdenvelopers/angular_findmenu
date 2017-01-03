@@ -54,7 +54,7 @@
 
   //model users
 
-  define('MODEL_USER', SITE_ROOT . 'modules/users/model/model/');
+  define('MODEL_USER', SITE_ROOT . '/modules/users/model/model/');
   define('UTILS_USERS', SITE_ROOT . 'modules/users/utils/');
   
 

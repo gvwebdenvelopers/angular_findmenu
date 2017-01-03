@@ -16,10 +16,12 @@ class controller_users {
 
     public function signup_user() {
         $jsondata = array();
-        $userJSON = json_decode($_POST['signup_user_json'], true);
-
+        $userJSON = $_POST;
         $result = validate_user($userJSON);
+        
+        
         if ($result['resultado']) {
+          
             $avatar = get_gravatar($result['data']['user_email'], $s = 400, $d = 'identicon', $r = 'g', $img = false, $atts = array());
             $userName = explode('@', $result['data']['user_email']);
             $arrArgument = array(
@@ -36,10 +38,10 @@ class controller_users {
             /* Control de registro */
             set_error_handler('ErrorHandler');
             try {
-
+                
                 //loadModel
                 $arrValue = loadModel(MODEL_USER, "users_model", "count", array('column' => array('user'), 'like' => array($arrArgument['user'])));
-
+                 
                 if ($arrValue[0]['total'] == 1) {
                     $arrValue = false;
                     $typeErr = 'Name';
