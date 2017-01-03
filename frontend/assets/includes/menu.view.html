@@ -1,4 +1,4 @@
-<!--<div ng-controller="menuCtrl">-->
+<div ng-controller="menuCtrl">
     <div id="alertbanner" ng-show="bannerV"><a  ng-class='bannerClass'>{{bannerText}}</a></div> 
     <div class="navbar" >
         <nav>
@@ -10,7 +10,15 @@
                 <li><a href="#/menus">Menus</a></li>
                 <li><a href="#/products">Products</a></li>
                 <li><a href="#/contact">Contact</a></li>
+                <!--con ng-show le añadimos una propiedad para que sea visible o no y controlarlo con angular-->
+                <li id="opt"><a href='#/ofertas' ng-show="misofertasV">Mis ofertas</a>
+                        <a href='#/admin' ng-show="adminV">Administrar</a></li>
+                <li id="LogProf">
+                    <a id="acceder" ng-show="accederV" href="" class="button special" ng-click="open()"  >Acceder</a>
+                    <a id='profile' ng-show="profileV" href='#/user/profile'><img ng-show="profileV" id='menuImg' class='icon rounded' src='{{avatar}}'/>{{nombre}}</a>
+                </li>
+                <li><a id='logout' ng-show="logoutV" ng-click='logout()' >Log Out</a></li>
             </ul>
         </nav> 
     </div>
-<!--</div>-->
+</div>

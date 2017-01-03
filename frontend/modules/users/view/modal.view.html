@@ -1,0 +1,42 @@
+<!-- Modal -->    
+    <section id="content" class="login">
+        <div class="details-holder-login">
+            <div class="modal-header">
+                <!--<script type="text/javascript" src="/modules/users/view/js/login.js"></script>
+                <script type="text/javascript" src="/modules/users/view/js/facebook.js"></script>-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+                <h1>LOG IN</h1>
+                
+            </div>
+            <div class="modal-body">
+                <form >
+                    <div>
+                        <input required class="text" type="text" id="email" name="email" ng-model="form.email" placeholder="Email">
+                    </div>
+                    <div>
+                        <input required class="text" type="password" id="pass" name="pass" ng-model="form.pass" placeholder="Password">
+                        <span class='error' ng-show="err"> {{errorpass}}</span>
+                    </div>
+
+                    <input class="btn-read-more" type="button" name="submitLog" id="submitLog" ng-click="login()" ng-show="login_form.user.$valid && login_form.pass.$valid" value="Send" />
+                </form>
+
+                <div id="social-signin">
+                    <ul class="icons">
+                        <li>
+                            <a id="fb" href="#" ng-click='loginFb()'><img src="https://findmenu.tk/modules/users/view/img/fbsig.png" alt="Login twitter" class="social-icon fb"/></a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click='loginTw()'><img src="https://findmenu.tk/modules/users/view/img/twsig.png" alt="Login twitter" class="social-icon tw" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="https://findmenu.tk/modules/users/view/img/googlesig.png" alt="Login google" class="social-icon google" /></a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="contact-reg">
+                    <h2><a href="#/users/alta/" id="linkReg">Regístrate</a></h2>
+                    <h2><a href="#/users/recuperar/" id="linkRest">¿Has olvidado tu contraseña?</a></h2>
+                </div>
+            </div>
+        </div>

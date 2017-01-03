@@ -1,0 +1,285 @@
+/*En este Css he intentado utilizar técnicas aprendidas en los últimos temas*/
+/*Sombras*/
+/*Fuentes*/
+/*Animaciones*/
+/*Gradientes*/
+/*Responsive*/
+/*borderradius*/
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Sarina');
+
+
+
+/*Configuración del contenido*/
+#content {
+    background-size: cover;
+    width: 100%;
+    padding:5%;
+}
+
+.login{
+    background: url(/frontend/assets/media/slide.jpg) no-repeat;
+}
+
+/*Contenido del modal emergente*/
+.modal-content{
+    width:50%;
+    margin-left:25%;
+    margin-top:10%;
+}
+
+.contact{
+    background: url(/frontend/assets/media/slide1.jpg) ;
+    margin-left:10%;
+    margin-right:10%;
+    padding:2%;
+}
+
+/*Configuración del fondo del modal*/
+.details-holder {
+    background-color: rgba(14, 4, 4, 0.70);
+    margin-left: 25%;
+    margin-right: 25%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.details-holder-login {
+    background-color: rgba(14, 4, 4, 0.70);
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/*Configuración del heder del modal*/
+.modal-header {
+    color: #37a000;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding:1%;
+    font-weight:bold;
+    font-family: 'Sarina';
+    /*gradiente para el header del modal*/
+    background: rgba(252,234,187,1);
+    background: -webkit-linear-gradient(rgba(252,234,187,1) 0%, rgba(252,205,77,1) 19%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+    background: -o-linear-gradient(rgba(252,234,187,1) 0%, rgba(252,205,77,1) 19%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+    background: linear-gradient(rgba(252,234,187,1) 0%, rgba(252,205,77,1) 19%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93', GradientType=0 );
+}
+
+/*Configuración cuerpo del modal*/
+.modal-body{
+    padding:5%;
+}
+
+/*Configuración para las entradas de texto y select*/
+.text,.select{
+
+    margin:1%;
+    width: 90%;
+    padding:1%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.select{
+    width: 50%;
+    overflow:hidden;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 9px 9px 9px 9px;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 1px 1px 11px #330033;
+    background: #FFB03B;
+    color:#37a000 ;
+    font-family: 'Sarina', sans-serif;
+}
+
+/*Configuración del boton send*/
+.btn-read-more {
+    background: #FFB03B;
+    padding: 7px 19px;
+    line-height: 17px;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    color: #37a000;
+    text-transform: uppercase;
+    margin:1%;
+    font-weight:bold;
+    font-family: 'Sarina', sans-serif;
+}
+
+/*Efecto al pasar por encima el ratón*/
+.btn-read-more:hover{
+
+    animation-name: floating;/*aplicamos al animacion*/
+    -webkit-animation-name: floating;/*compatibilidad con safari*/
+
+    animation-duration: 1.5s;/*duración de la animación*/
+    -webkit-animation-duration: 1.5s;/*compatibilidad con safari*/
+
+    animation-iteration-count: infinite;/*las veces que se repite*/
+    -webkit-animation-iteration-count: infinite;/*compatibilidad con safari*/
+}
+
+
+.social-icon {
+    width:100%;/*esto se utiliza para que no salga del modal*/
+    margin:1%;
+}
+
+.fb{
+
+    background-image:url("https://findmenu.es/modules/users/view/img/fbsig.png");
+}
+
+/*quitamos el padding para que este a la izquiereda*/
+ul.icons{
+    padding: 0px;
+}
+
+/*alineamos los iconos sociales*/
+.icons li{
+    list-style-type: none;
+    display: inline-block;
+
+}
+/*Efecto al pasar por encima el ratón*/
+.icons li:hover{
+    animation-name: pulse;/*aplicamos al animacion*/
+    -webkit-animation-name: pulse;/*compatibilidad con safari*/
+
+    animation-duration: 1.5s;/*duración de la animación*/
+    -webkit-animation-duration: 1.5s;/*compatibilidad con safari*/
+
+    animation-iteration-count: infinite;/*las veces que se repite*/
+    -webkit-animation-iteration-count: infinite;/*compatibilidad con safari*/
+}
+
+
+/*Damos formato a los vinculos para registrase o recuperar pasword*/
+#contact-reg h2 a,.subject{
+    color: #FFB03B;
+    text-decoration: none;
+    font-family: 'Sarina', cursive;
+}
+.subject{
+    color: #37a000 ;
+    padding:1%;
+}
+
+.ajaxLoader {
+    display: none;
+}
+
+.msg_ok {
+    background: #589D05;
+}
+
+.msg_error {
+    color: red;
+    padding:1%;
+    margin:1%;
+}
+
+/*Animaciones*/
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+}
+/*compatibilidad con safari*/
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(0.5);
+        opacity: 0.9;
+    }
+    50% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(0.5);
+        opacity: 0.9;
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0%);
+    }
+    50% {
+        transform: translateY(8%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+/*compatibilidad con safari*/
+@-webkit-keyframes floating {
+    0% {
+        -webkit-transform: translateY(0%);
+    }
+    50% {
+        -webkit-transform: translateY(8%);
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+    }
+}
+
+/*Adaptación para Ipads*/
+@media screen and (max-width: 768px) {
+
+    .details-holder {
+        margin-left: 5%;
+        margin-right: 5%;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .modal-content{
+        width:90%;
+        margin: 5%;
+
+    }
+}
+
+/*Adaptación para móviles*/
+@media screen and (max-width: 320px) {
+
+    .details-holder {
+        margin-left: 0%;
+        margin-right: 0%;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    #content {
+        margin: 5%;
+        width: 100%;
+        padding:0%;
+    }
+
+    .modal-content{
+        width:100%;
+        margin: 1px;
+        padding:0%;
+    }
+}
