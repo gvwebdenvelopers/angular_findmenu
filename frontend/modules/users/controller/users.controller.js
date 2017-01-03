@@ -31,7 +31,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
     //CommonService, $location, UsersService, twitterService, facebookService, $timeout, cookiesService) {
         CommonService, $location, UsersService,  $timeout) {
     $scope.form = {
-        user: "",
+        email: "",
         pass: ""
     };
         
@@ -41,12 +41,12 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
         $uibModalInstance.dismiss('cancel');
     };
     $scope.login = function () {
-        var data = {"usuario": $scope.form.user, "pass": $scope.form.pass};
+        var data = {"email": $scope.form.email, "pass": $scope.form.pass};
         data = JSON.stringify(data);
         
-        services.post("user", "login", data).then(function (response) {
-            //console.log(response);
-            //console.log(response[0].usuario);
+        services.post("users", "login", data).then(function (response) {
+            console.log(response);
+            console.log(response[0].usuario);
             if (!response.error) {
                 cookiesService.SetCredentials(response[0]);
                 $scope.close();
@@ -117,5 +117,75 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
     };*/
 });
 
+app.controller('signupCtrl', function ($scope, services, $location, $timeout, CommonService) {
+    $scope.signup = {
+        
+        inputEmail: "",
+        inputPass: "",
+        inputPass2: "",  
+        inputType: "client"
+        
+    };
+    
+    $scope.error = function() {
+        
+        $scope.signup.email_error = "";           
+        $scope.signup.pass_error = "";
+        
+    };
+    
+    $scope.change_signup = function () {
+       
+        $scope.signup.email_error = "";           
+        $scope.signup.pass_error = "";
+        
+    };
+    
+    $('.modal').remove();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+
+    $scope.SubmitSignUp = function () {
+        var data = { "user_email": $scope.signup.inputEmail,
+            "password": $scope.signup.inputPass, "password2": $scope.signup.inputPass2,"usertype": $scope.signup.inputType};
+        var data_users_JSON = JSON.stringify(data);
+        services.post('user', 'signup_user', data_users_JSON).then(function (response) {
+            console.log(response);
+            if (response.success) {
+                $timeout(function () {
+                    $location.path('/');
+                    CommonService.banner("El usuario se ha dado de alta correctamente, revisa su correo para activarlo", "");
+                }, 2000);
+            } else {
+                if (response.typeErr === "Name") {
+                    $scope.AlertMessage = true;
+                    $timeout(function () {
+                        $scope.AlertMessage = false;
+                    }, 5000);
+                    $scope.signup.user_error = response.error;
+                    
+                } else if (response.typeErr === "Email") {
+                    $scope.AlertMessage = true;
+                    $timeout(function () {
+                        $scope.AlertMessage = false;
+                    }, 5000);
+                    $scope.signup.email_error = response.error;
+                    
+                } else if (response.typeErr === "error") {
+                    //console.log(response.error);
+                    $scope.AlertMessage = true;
+                    $timeout(function () {
+                        $scope.AlertMessage = false;
+                    }, 5000);
+                    
+                    $scope.signup.email_error = response.error.email;
+                    $scope.signup.pass_error = response.error.password;
+                } else if (response.typeErr === "error_server"){
+                    CommonService.banner("Error en el servidor", "Err");
+                }
+            }
+        });
+    };
+});
 
 

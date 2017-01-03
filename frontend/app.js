@@ -9,9 +9,9 @@ app.config(['$routeProvider',
                 //cookies
                 .when("/cookies", {templateUrl: "frontend/modules/cookies/view/cookies.view.html", controller: "cookiesCtrl"})
 
-                //Modulo de users
+                //Módulo de users
                 //Signup
-                .when("/user/alta/", {
+                .when("/users/alta/", {
                     templateUrl: "frontend/modules/users/view/signup.view.html",
                     controller: "signupCtrl"
                 })

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>changepass</name>
+        <uri>changepass</uri>
+    </function>
+    <function>
+        <name>init</name>
+        <uri>init</uri>
+    </function>
+    <function>
+        <name>login</name>
+        <uri>login</uri>
+    </function>
+    <function>
+        <name>process_restore</name>
+        <uri>process_restore</uri>
+    </function>
+    <function>
+        <name>restore</name>
+        <uri>restore</uri>
+    </function>
+    <function>
+        <name>signup</name>
+        <uri>signup</uri>
+    </function>
+    <function>
+        <name>signup_user</name>
+        <uri>signup_user</uri>
+    </function>
+    <function>
+        <name>social_signin</name>
+        <uri>social_signin</uri>
+    </function>
+    <function>
+        <name>update_pass</name>
+        <uri>update_pass</uri>
+    </function>
+    <function>
+        <name>verify</name>
+        <uri>verify</uri>
+    </function>
+</functions>
