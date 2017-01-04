@@ -4,7 +4,7 @@ app.controller('menuCtrl', function ($scope, $uibModal, UsersService, $rootScope
     $rootScope.bannerV = false;
     $rootScope.bannerText = "";
 
-//Cunado llamamos a esta función cargamos la vista y también el controlador modalWindowCtrl
+//Cuando llamamos a esta función cargamos la vista y también el controlador modalWindowCtrl
     $scope.open = function () {
         var modalInstance = $uibModal.open({
             animation: 'true',
@@ -45,11 +45,12 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
         data = JSON.stringify(data);
         
         services.post("users", "login", data).then(function (response) {
-            console.log(response);
-            console.log(response[0].usuario);
+            //console.log(response);
+            //console.log(response[0]);
             if (!response.error) {
                 cookiesService.SetCredentials(response[0]);
                 $scope.close();
+                //utilizamos el servicio de login si todo ha funcionado bien
                 UsersService.login();
             } else {
                 if (response.datos == 503)

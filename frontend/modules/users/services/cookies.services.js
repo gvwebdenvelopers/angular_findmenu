@@ -10,15 +10,17 @@ app.factory("cookiesService", ['$cookies', 'localstorageService',
         service.GetCredentials_encode = GetCredentials_encode;
         return service;
 
-        function SetCredentials(user) {
+        function SetCredentials(users) {
             //encriptar data
-            var usuario = Base64_encode(user.usuario);
-            var tipo = Base64_encode(user.tipo);
-            var nombre = Base64_encode(user.nombre);
+            
+            var user = Base64_encode(users.user);
+            var usertype = Base64_encode(users.usertype);
+            var email = Base64_encode(users.email);
+            
             
             //almacenarlos en la cookie session
             $cookies.putObject("session", 
-            {usuario: usuario, avatar: user.avatar, tipo: tipo, nombre: nombre}, 
+            {user: user, avatar: users.avatar, usertype: usertype, email: email}, 
             {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
             
             //almacenarlos en localstorage
@@ -48,18 +50,18 @@ app.factory("cookiesService", ['$cookies', 'localstorageService',
             return user;
         }
         
-        function GetCredentials_encode(user) {
-            var usuario = Base64_encode(user.usuario);
-            var tipo = Base64_encode(user.tipo);
-            var nombre = Base64_encode(user.nombre);
-            return {usuario: usuario, avatar: user.avatar, tipo: tipo, nombre: nombre};
+        function GetCredentials_encode(users) {
+             var user = Base64_encode(users.user);
+            var usertype = Base64_encode(users.usertype);
+            var email = Base64_encode(users.email);
+            return {user: user, avatar: users.avatar, usertype: usertype, email: email};
         }
         
         function GetCredentials_decode() {
-            var usuario = Base64_decode($cookies.getObject("session").usuario);
-            var tipo = Base64_decode($cookies.getObject("session").tipo);
-            var nombre = Base64_decode($cookies.getObject("session").nombre);
-            return {usuario: usuario, avatar: $cookies.getObject("session").avatar, tipo: tipo, nombre: nombre};
+            var user = Base64_decode($cookies.getObject("session").user);
+            var usertype = Base64_decode($cookies.getObject("session").usertype);
+            var email = Base64_decode($cookies.getObject("session").email);
+            return {user: user, avatar: $cookies.getObject("session").avatar, usertype: usertype, email:email};
         }
         
         function Base64_encode(input) {
@@ -68,12 +70,15 @@ app.factory("cookiesService", ['$cookies', 'localstorageService',
             var chr1, chr2, chr3 = "";
             var enc1, enc2, enc3, enc4 = "";
             var i = 0;
-    
+            
+    try{
             do {
+                //En este punto me esta dando un fallo que me bloquea la aplicación pero si codifica
+                
                 chr1 = input.charCodeAt(i++);
                 chr2 = input.charCodeAt(i++);
                 chr3 = input.charCodeAt(i++);
-    
+           
                 enc1 = chr1 >> 2;
                 enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
                 enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
@@ -93,6 +98,9 @@ app.factory("cookiesService", ['$cookies', 'localstorageService',
                 chr1 = chr2 = chr3 = "";
                 enc1 = enc2 = enc3 = enc4 = "";
             } while (i < input.length);
+             }catch(err) {
+                    console.log("error");
+                }
             return output;
         }
         

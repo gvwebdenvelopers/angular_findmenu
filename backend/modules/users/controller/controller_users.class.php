@@ -96,12 +96,14 @@ class controller_users {
 
     ////////////////////////////////////////////////////begin signin///////////////////////////////////////////
     public function login() {
-        $user = json_decode($_POST['login_json'], true);
+        $email = $_POST;
+        
         $column = array(
-            'user'
+            'email'
         );
         $like = array(
-            $user['user']
+            $email['email']
+                
         );
 
         $arrArgument = array(
@@ -114,8 +116,9 @@ class controller_users {
         try {
             //loadModel
             $arrValue = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
-
-            $arrValue = password_verify($user['password'], $arrValue[0]['password']);
+             
+            $arrValue = password_verify($email['pass'], $arrValue[0]['password']);
+           
         } catch (Exception $e) {
             $arrValue = "error";
         }
@@ -126,24 +129,20 @@ class controller_users {
                 set_error_handler('ErrorHandler');
                 try {
                     $arrArgument = array(
-                        'column' => array("user", "active"),
-                        'like' => array($user['user'], "1")
+                        'column' => array("email", "active"),
+                        'like' => array($email['email'], "1")
                     );
                     $arrValue = loadModel(MODEL_USER, "users_model", "count", $arrArgument);
                     //echo json_encode($arrValue);
                     //exit();
                     if ($arrValue[0]["total"] == 1) {
                         $arrArgument = array(
-                            'column' => array("user"),
-                            'like' => array($user['user']),
+                            'column' => array("email"),
+                            'like' => array($email['email']),
                             'field' => array('*')
                         );
-                        $user = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
-                        $url = friendly('?module=home', true);
-                        $jsondata["success"] = true;
-                        $jsondata["redirect"] = $url;
-                        $jsondata["user"] = $user;
-                        echo json_encode($user);
+                        $email = loadModel(MODEL_USER, "users_model", "select", $arrArgument);                 
+                        echo json_encode($email);
                         exit();
                     } else {
                         $value = array(
