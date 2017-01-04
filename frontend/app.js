@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngCookies']);
+var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngCookies', 'facebook']);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -23,4 +23,11 @@ app.config(['$routeProvider',
                 .otherwise("/", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
     }]);
 
+app.config([
+  'FacebookProvider',
+  function(FacebookProvider) {
+    var myAppId = '1722408528089053';
+    FacebookProvider.init(myAppId);
+  }
+]);
 

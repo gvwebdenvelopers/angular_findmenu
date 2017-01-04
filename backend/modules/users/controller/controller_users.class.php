@@ -207,7 +207,8 @@ class controller_users {
     ////////////////////////////////////////////////////end signup///////////////////////////////////////////
 
     public function social_signin() { //utilitzada per Facebook i Twitter
-        $user = json_decode($_POST['user'], true);
+        $user = $_POST;
+        
 
         set_error_handler('ErrorHandler');
         try {
@@ -219,17 +220,19 @@ class controller_users {
         restore_error_handler();
 
         if (!$arrValue[0]["total"]) {
-            if ($user['email'])
-                $avatar = 'https://graph.facebook.com/' . ($user['id']) . '/picture';
-            else
-                $avatar = get_gravatar($mail, $s = 400, $d = 'identicon', $r = 'g', $img = false, $atts = array());
-
+             //echo json_encode("estoy en si no hay uno");
+        //exit;
+           
+             if (!$user['avatar']){
+                $user['avatar'] = 'http://graph.facebook.com/' . ($user['id']) . '/picture';
+                
+             }
             $arrArgument = array(
                 'active' => "1",
-                'avatar' => $avatar,
+                'avatar' => $user['avatar'],
                 'email' => $user['email'],
-                'lastname' => $user['apellidos'],
-                'name' => $user['nombre'],
+                'lastname' => $user['lastname'],
+                'name' => $user['name'],
                 'password' => "",
                 'tipo' => "client",
                 'token' => "",
@@ -246,6 +249,7 @@ class controller_users {
             $value = true;
 
         if ($value) {
+           
             set_error_handler('ErrorHandler');
             $arrArgument = array(
                 'column' => array("user"),

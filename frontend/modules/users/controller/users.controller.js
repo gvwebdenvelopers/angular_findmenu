@@ -27,9 +27,10 @@ app.controller('menuCtrl', function ($scope, $uibModal, UsersService, $rootScope
 
 });
 
+//Controlador del modal
 app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
     //CommonService, $location, UsersService, twitterService, facebookService, $timeout, cookiesService) {
-        CommonService, $location, UsersService,  $timeout, cookiesService) {
+        CommonService, $location, UsersService,  $timeout, cookiesService, facebookService) {
     $scope.form = {
         email: "",
         pass: ""
@@ -91,7 +92,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
                 });
             }
         });
-    };
+    };*/
     $scope.loginFb = function () {
         facebookService.login().then(function () {
             facebookService.me().then(function (user) {
@@ -99,10 +100,10 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
                 if (user.error){
                     $scope.close();
                 }else{
-                    services.post("user", 'social_signin', {id: user.id, nombre: user.first_name, apellidos: user.last_name, email: user.email})
+                    services.post("users", 'social_signin', {id: user.id, name: user.first_name, lastname: user.last_name, email: user.email})
                     .then(function (response) {
                         //console.log(response);
-                        //console.log(response[0]['usuario']);
+                        //console.log(response[0]);
                         if (!response.error) {
                             cookiesService.SetCredentials(response[0]);
                             $scope.close();
@@ -115,7 +116,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
                 }
             });
         });
-    };*/
+    };
 });
 
 app.controller('signupCtrl', function ($scope, services, $location, $timeout, CommonService) {

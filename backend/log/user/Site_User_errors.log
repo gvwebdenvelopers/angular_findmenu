@@ -1,0 +1,8 @@
+04.01.2017 01:49:32  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 120 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+04.01.2017 03:12:06  |  User:   | ERROR: [8] Undefined index: pass
+Notice on line 120 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200

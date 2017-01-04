@@ -6,7 +6,7 @@ app.controller('cookiesCtrl', function ($scope, $rootScope, $http, accept_cookie
 
     var user = accept_cookies_service.GetCredentials();
     if (user) { //si existe la cookie
-        console.log(user);
+        //console.log(user);
         //$rootScope.accept_cookies = false;
         $rootScope.accept_cookies = true;
 
