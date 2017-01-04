@@ -1,7 +1,7 @@
 //app.factory("UsersService", ['$location', '$rootScope', 'services', 'facebookService', 'cookiesService', 'twitterService',
 //function ($location, $rootScope, services, facebookService, cookiesService, twitterService) {
-app.factory("UsersService", ['$location', '$rootScope', 'services', 'cookiesService',
-    function ($location, $rootScope, services, cookiesService) {
+app.factory("UsersService", ['$location', '$rootScope', 'services', 'cookiesService','facebookService',
+    function ($location, $rootScope, services, cookiesService, facebookService) {
         var service = {};
         service.login = login;
         service.logout = logout;
@@ -39,7 +39,7 @@ app.factory("UsersService", ['$location', '$rootScope', 'services', 'cookiesServ
         }
 
         function logout() {
-            //facebookService.logout();
+            facebookService.logout();
             //twitterService.clearCache();
             cookiesService.ClearCredentials();
 
