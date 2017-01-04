@@ -29,14 +29,14 @@ app.controller('menuCtrl', function ($scope, $uibModal, UsersService, $rootScope
 
 //Controlador del modal
 app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
-    //CommonService, $location, UsersService, twitterService, facebookService, $timeout, cookiesService) {
-        CommonService, $location, UsersService,  $timeout, cookiesService, facebookService) {
+        CommonService, $location, UsersService,  $timeout, cookiesService, facebookService, twitterService) {
     $scope.form = {
         email: "",
         pass: ""
     };
         
-    //twitterService.initialize();
+    //inicializamos el servicio para saber si estamos autorizados
+    twitterService.initialize();
     
     $scope.close = function () {
         $uibModalInstance.dismiss('cancel');
@@ -71,13 +71,13 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
         });
     };
 
-   /* $scope.loginTw = function () {
+    $scope.loginTw = function () {
         twitterService.connectTwitter().then(function () {
-            //console.log(twitterService.isReady());
+            console.log(twitterService.isReady());
             if (twitterService.isReady()) {
                 twitterService.getUserInfo().then(function (data) {
-                    //console.log(data);
-                    services.post("user", 'social_signin', {id: data.id, nombre: data.name, avatar: data.profile_image_url_https, twitter: true})
+                    console.log(data);
+                    services.post("user", 'social_signin', {id: data.id, name: data.name, avatar: data.profile_image_url_https, twitter: true})
                     .then(function (response) {
                         //console.log(response[0]);
                         if (!response.error) {
@@ -92,7 +92,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
                 });
             }
         });
-    };*/
+    };
     $scope.loginFb = function () {
         facebookService.login().then(function () {
             facebookService.me().then(function (user) {

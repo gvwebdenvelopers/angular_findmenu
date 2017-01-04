@@ -220,8 +220,7 @@ class controller_users {
         restore_error_handler();
 
         if (!$arrValue[0]["total"]) {
-             //echo json_encode("estoy en si no hay uno");
-        //exit;
+            
            
              if (!$user['avatar']){
                 $user['avatar'] = 'http://graph.facebook.com/' . ($user['id']) . '/picture';

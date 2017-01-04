@@ -1,9 +1,9 @@
-/*app.factory('twitterService', function ($q) {
+app.factory('twitterService', function ($q) {
     var authorizationResult = false;
     return {
         initialize: function () {
             //initialize OAuth.io with public key of the application
-            OAuth.initialize('KxTBHfM2LNk91rwz8HBkcy_x2jc', {cache: true});
+            OAuth.initialize('8kVmJREnmiCHJcTr38vW5y4V5', {cache: true});
             //try to create an authorization result when the page loads, this means a returning user won't have to click the twitter button again
             authorizationResult = OAuth.create('twitter');
         },
@@ -17,7 +17,7 @@
                     authorizationResult = result;
                     deferred.resolve();
                 } else {
-                    console.log(result);
+                    console.log("autorizacion twiter: " + result);
                 }
             });
             return deferred.promise;
@@ -42,7 +42,7 @@
             return deferred.promise;
         }
     }
-});*/
+});
 
 app.factory('facebookService', function (Facebook, $q) {
     var service = {};
