@@ -16,6 +16,12 @@ app.config(['$routeProvider',
                     controller: "signupCtrl"
                 })
 
+                //Activar Usuario
+                .when("/users/activar/:token", {
+                    templateUrl: "frontend/modules/home/view/home.view.html",
+                    controller: "verifyCtrl"
+                })
+
 
 
 
@@ -24,10 +30,10 @@ app.config(['$routeProvider',
     }]);
 
 app.config([
-  'FacebookProvider',
-  function(FacebookProvider) {
-    var myAppId = '1722408528089053';
-    FacebookProvider.init(myAppId);
-  }
+    'FacebookProvider',
+    function (FacebookProvider) {
+        var myAppId = '1722408528089053';
+        FacebookProvider.init(myAppId);
+    }
 ]);
 

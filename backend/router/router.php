@@ -67,8 +67,7 @@ function handlerModule($URI_module, $URI_function) {
             break;
         }
     }
-    if (!$exist) {
-        
+    if (!$exist) {    
         echo json_encode($obj['error'] = 404);
     }
 }
@@ -85,7 +84,6 @@ function handlerFunction($module, $obj, $URI_function) {
         }
     }
     if (!$exist) {
-        echo json_encode("estoy en handler function no exist: ". $URI_function);
         echo json_encode($obj['error'] = 404);
     } else {
         //$obj->$event();

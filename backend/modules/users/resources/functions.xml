@@ -2,7 +2,7 @@
 <functions>
     <function>
         <name>changepass</name>
-        <uri>changepass</uri>
+        <uri>cambiarpassword</uri>
     </function>
     <function>
         <name>init</name>
@@ -38,6 +38,6 @@
     </function>
     <function>
         <name>verify</name>
-        <uri>verify</uri>
+        <uri>activar</uri>
     </function>
 </functions>

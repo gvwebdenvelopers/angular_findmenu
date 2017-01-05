@@ -10,20 +10,20 @@ function send_email($arr) {
     switch ($arr['type']) {
         case 'alta':
             $subject = 'Tu Alta en FindMenu';
-            $ruta = "<a href='" . friendly("?module=users&function=verify" , true). $arr['token'] . "'>aqu&iacute;</a>";
-            $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
+            $ruta = "<a href='https://".$_SERVER['HTTP_HOST']."/#/users/activar/" . $arr['token'] . "'>aqu&iacute;</a>";
+            $body = 'Gracias por unirte a Findmenu acute;n<br> Para finalizar el registro, pulsa ' . $ruta;
             break;
         //El link de href nos dirigirá a la función verify en el controlador y le pasará el token
 
         case 'modificacion':
             $subject = 'Tu Nuevo Password en FindMenu<br>';
-            $ruta = '<a href="' . friendly("?module=users&function=changepass" , true). $arr['token'] . '">aqu&iacute;</a>';
-            $body = 'Para recordar tu password pulsa ' . $ruta;
+            $ruta = "<a href='https://".$_SERVER['HTTP_HOST']."/#/users/cambiarpassword/" . $arr['token'] . "'>aqu&iacute;</a>";
+            $body = 'Para cambiar tu password pulsa ' . $ruta;
             break;
         //El link de href nos dirigirá a la función changepass en el controlador y le pasará el token
         case 'contact':
             $subject = 'Tu Petición a Findmenu ha sido enviada';
-            $ruta = "https://findmenu.tk";
+            $ruta = '<a href="https://'.$_SERVER['HTTP_HOST'].'/#/"' . '>aqu&iacute;</a>';
             $body = 'Para visitar nuestra web, pulsa ' . $ruta;
             break;
 
@@ -85,7 +85,7 @@ function send_email($arr) {
     $html .= $body;
     $html .= "</section>";
     $html .= "<footer>";
-    $html .= "<p>Enviado por FindMenu.com</p>";
+    $html .= "<p>Enviado por FindMenu</p>";
     $html .= "</footer>";
     $html .= "</body>";
     $html .= "</html>";

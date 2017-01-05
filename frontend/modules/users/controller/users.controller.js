@@ -190,4 +190,30 @@ app.controller('signupCtrl', function ($scope, services, $location, $timeout, Co
     };
 });
 
+app.controller('verifyCtrl', function (UsersService, $location, CommonService, $route, services, cookiesService) {
+    var token = $route.current.params.token;
+    if (token.substring(0, 3) !== 'Ver') {
+        CommonService.banner("Ha habido algún tipo de error con la dirección", "Err");
+        $location.path('/');
+    }
+    services.get("users", "activar", token).then(function (response) {
+        console.log(response);
+        //console.log(response.user[0].usuario);
+        if (response.success) {
+            CommonService.banner("Su cuenta ha sido satisfactoriamente verificada", "");
+            cookiesService.SetCredentials(response.user[0]);
+            UsersService.login();
+            $location.path('/');
+        } else {
+            if (response.datos == 503){
+                CommonService.banner("Error, intentelo mas tarde", "Err");
+                $location.path("/");
+            }else if (response.error == 404){
+                CommonService.banner("Error, intentelo mas tarde", "Err");
+                $location.path("/");
+            }
+        }
+    });
+});
+
 

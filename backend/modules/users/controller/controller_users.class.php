@@ -76,7 +76,7 @@ class controller_users {
                 restore_error_handler();
 
                 if ($arrValue) {
-                   //sendtoken($arrArgument, "alta");
+                   sendtoken($arrArgument, "alta");
                 $jsondata["success"] = true;
                 echo json_encode($jsondata);
                 exit;
@@ -133,8 +133,7 @@ class controller_users {
                         'like' => array($email['email'], "1")
                     );
                     $arrValue = loadModel(MODEL_USER, "users_model", "count", $arrArgument);
-                    //echo json_encode($arrValue);
-                    //exit();
+                    
                     if ($arrValue[0]["total"] == 1) {
                         $arrArgument = array(
                             'column' => array("email"),
@@ -193,14 +192,22 @@ class controller_users {
                 //la consulta esta preparada para actualizar mas cosas, se usa en mas lugares.
                 $value = loadModel(MODEL_USER, "users_model", "update_one", $arrArgument);
             } catch (Exception $e) {
-                $value = false;
+                $value['success'] = false;
+            }
+              if ($value) {
+                $arrArgument = array(
+                    'column' => array("token"),
+                    'like' => array($_GET['param']),
+                    'field' => array('*')
+                );
+                $user = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
+                $json['user'] = $user;
+                $json['success'] = true;
+                echo json_encode($json);
+                exit();
             }
             restore_error_handler();
-            if ($value) {
-                loadView('modules/home/view/', 'home.php');
-            } else {
-                showErrorPage(1, "", 'HTTP/1.0 503 Service Unavailable', 503);
-            }
+            echo json_encode($value);
         }
     }
 
