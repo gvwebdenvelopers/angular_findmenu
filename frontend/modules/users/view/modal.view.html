@@ -2,8 +2,7 @@
     <section id="content" class="login">
         <div class="details-holder-login">
             <div class="modal-header">
-                <!--<script type="text/javascript" src="/modules/users/view/js/login.js"></script>
-                <script type="text/javascript" src="/modules/users/view/js/facebook.js"></script>-->
+                
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
                 <h1>LOG IN</h1>
                 
@@ -18,14 +17,14 @@
                         <span class='error' ng-show="err"> {{errorpass}}</span>
                     </div>
 
-                    <!--<input class="btn-read-more" type="button" name="submitLog" id="submitLog" ng-click="login()" ng-show="login_form.user.$valid && login_form.pass.$valid" value="Send" />-->
+                    <!--<input class="btn-read-more" type="button" name="submitLog" id="submitLog" ng-click="login()" ng-show="login_form.email.$valid && login_form.pass.$valid" value="Send" />-->
                     <input class="btn-read-more" type="button" name="submitLog" id="submitLog" ng-click="login()"  value="Send" />
                 </form>
 
                 <div id="social-signin">
                     <ul class="icons">
-                        <li>
-                            <a id="fb" href="#" ng-click='loginFb()'><img src="https://findmenu.tk/modules/users/view/img/fbsig.png" alt="Login twitter" class="social-icon fb"/></a>
+                        <li >
+                            <a id="fb" href="#" ng-click='loginFb()'><img src="https://findmenu.tk/modules/users/view/img/fbsig.png" alt="Login twitter" class="social-icon tw" /></a>
                         </li>
                         <li>
                             <a href="#" ng-click='loginTw()'><img src="https://findmenu.tk/modules/users/view/img/twsig.png" alt="Login twitter" class="social-icon tw" /></a>

@@ -14,7 +14,7 @@
     </function>
     <function>
         <name>process_restore</name>
-        <uri>process_restore</uri>
+        <uri>recuperar</uri>
     </function>
     <function>
         <name>restore</name>

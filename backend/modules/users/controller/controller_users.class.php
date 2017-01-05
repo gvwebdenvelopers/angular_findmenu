@@ -11,17 +11,17 @@ class controller_users {
 
     ////////////////////////////////////////////////////begin signup///////////////////////////////////////////
     //function signup() { //refactorizar loadView para hacer los requires allí     
-       // loadView('modules/users/view/', 'signup.php');
+    // loadView('modules/users/view/', 'signup.php');
     //}
 
     public function signup_user() {
         $jsondata = array();
         $userJSON = $_POST;
         $result = validate_user($userJSON);
-        
-        
+
+
         if ($result['resultado']) {
-          
+
             $avatar = get_gravatar($result['data']['user_email'], $s = 400, $d = 'identicon', $r = 'g', $img = false, $atts = array());
             $userName = explode('@', $result['data']['user_email']);
             $arrArgument = array(
@@ -33,15 +33,15 @@ class controller_users {
                 'tipo' => "client",
                 'token' => "",
                 'user' => $userName[0],
-                'active'=>0
+                'active' => 0
             );
             /* Control de registro */
             set_error_handler('ErrorHandler');
             try {
-                
+
                 //loadModel
                 $arrValue = loadModel(MODEL_USER, "users_model", "count", array('column' => array('user'), 'like' => array($arrArgument['user'])));
-                 
+
                 if ($arrValue[0]['total'] == 1) {
                     $arrValue = false;
                     $typeErr = 'Name';
@@ -61,32 +61,31 @@ class controller_users {
             restore_error_handler();
             /* Fin de control de registro */
 
-            
-                set_error_handler('ErrorHandler');
-                try {
-                    //loadModel
 
-                    $arrArgument['token'] = "Ver" . md5(uniqid(rand(), true));
+            set_error_handler('ErrorHandler');
+            try {
+                //loadModel
 
-                    $arrValue = loadModel(MODEL_USER, "users_model", "create_user", $arrArgument);
-                    //echo "en try " . $arrValue;
-                } catch (Exception $e) {
-                    $arrValue = false;
-                }
-                restore_error_handler();
+                $arrArgument['token'] = "Ver" . md5(uniqid(rand(), true));
 
-                if ($arrValue) {
-                   sendtoken($arrArgument, "alta");
+                $arrValue = loadModel(MODEL_USER, "users_model", "create_user", $arrArgument);
+                //echo "en try " . $arrValue;
+            } catch (Exception $e) {
+                $arrValue = false;
+            }
+            restore_error_handler();
+
+            if ($arrValue) {
+                sendtoken($arrArgument, "alta");
                 $jsondata["success"] = true;
                 echo json_encode($jsondata);
                 exit;
-                } else {
-                    $jsondata["success"] = false;
+            } else {
+                $jsondata["success"] = false;
                 $jsondata['typeErr'] = "error_server";
                 echo json_encode($jsondata);
                 exit;
-                }
-           
+            }
         } else {
             $jsondata["success"] = false;
             $jsondata['data'] = $result;
@@ -97,13 +96,12 @@ class controller_users {
     ////////////////////////////////////////////////////begin signin///////////////////////////////////////////
     public function login() {
         $email = $_POST;
-        
+
         $column = array(
             'email'
         );
         $like = array(
             $email['email']
-                
         );
 
         $arrArgument = array(
@@ -116,9 +114,8 @@ class controller_users {
         try {
             //loadModel
             $arrValue = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
-             
+
             $arrValue = password_verify($email['pass'], $arrValue[0]['password']);
-           
         } catch (Exception $e) {
             $arrValue = "error";
         }
@@ -133,14 +130,14 @@ class controller_users {
                         'like' => array($email['email'], "1")
                     );
                     $arrValue = loadModel(MODEL_USER, "users_model", "count", $arrArgument);
-                    
+
                     if ($arrValue[0]["total"] == 1) {
                         $arrArgument = array(
                             'column' => array("email"),
                             'like' => array($email['email']),
                             'field' => array('*')
                         );
-                        $email = loadModel(MODEL_USER, "users_model", "select", $arrArgument);                 
+                        $email = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
                         echo json_encode($email);
                         exit();
                     } else {
@@ -194,7 +191,7 @@ class controller_users {
             } catch (Exception $e) {
                 $value['success'] = false;
             }
-              if ($value) {
+            if ($value) {
                 $arrArgument = array(
                     'column' => array("token"),
                     'like' => array($_GET['param']),
@@ -215,7 +212,7 @@ class controller_users {
 
     public function social_signin() { //utilitzada per Facebook i Twitter
         $user = $_POST;
-        
+
 
         set_error_handler('ErrorHandler');
         try {
@@ -227,12 +224,11 @@ class controller_users {
         restore_error_handler();
 
         if (!$arrValue[0]["total"]) {
-            
-           
-             if (!$user['avatar']){
+
+
+            if (!$user['avatar']) {
                 $user['avatar'] = 'http://graph.facebook.com/' . ($user['id']) . '/picture';
-                
-             }
+            }
             $arrArgument = array(
                 'active' => "1",
                 'avatar' => $user['avatar'],
@@ -255,7 +251,7 @@ class controller_users {
             $value = true;
 
         if ($value) {
-           
+
             set_error_handler('ErrorHandler');
             $arrArgument = array(
                 'column' => array("user"),
@@ -271,11 +267,7 @@ class controller_users {
     }
 
     ////////////////////////////////////////////////////begin restore///////////////////////////////////////////
-    function restore() {
-        //1- La función restore solo carga la vista en la que el usuario introducirá
-        //su email para que le cambiemos la contraseña
-        loadView('modules/users/view/', 'restore.php');
-    }
+
 
     public function process_restore() {
         //2- La función process_restore cambia el token si existe el correo
@@ -319,40 +311,29 @@ class controller_users {
 
                         if (sendtoken($arrArgument, "modificacion")) {
 
-                            echo "Tu nueva contraseña ha sido enviada al email";
+                            echo "true|Tu petición de cambio de contraseña ha sido enviado correctamente ";
                         } else {
 
-                            echo "Error en el servidor. Intentelo más tarde";
+                            echo "false|Error en el servidor. Intentelo más tarde...";
                         }
                     }
                 } else {
-                    echo "El email introducido no existe ";
+                    echo "false|El email introducido no existe ";
                 }
             } else {
-                echo "El email no es válido";
+                echo "false|El email no es válido";
             }
-        }
-    }
-
-    function changepass() {
-        //3-esta funcioón la utilizamos para entrar a la vista changepass desde el correo enviado
-        if (substr($_GET['param'], 0, 3) == "Cha") {
-            loadView('modules/users/view/', 'changepass.php');
-        } else {
-            showErrorPage(1, "", 'HTTP/1.0 503 Service Unavailable', 503);
         }
     }
 
     function update_pass() {
         //4-cuando ya hemos validado el password con js utilizamos esta función
         //para actualizar el password en la base de datos
-        $jsondata = array();
-        $pass = json_decode($_POST['passw'], true);
         $arrArgument = array(
             'column' => array('token'),
-            'like' => array($pass['token']),
+            'like' => array($_POST['token']),
             'field' => array('password'),
-            'new' => array(password_hash($pass['password'], PASSWORD_BCRYPT))
+            'new' => array(password_hash($_POST['password'], PASSWORD_BCRYPT))
         );
 
         set_error_handler('ErrorHandler');
@@ -364,15 +345,11 @@ class controller_users {
         restore_error_handler();
 
         if ($value) {
-            $url = friendly('?module=home&function=init&param=rest', true);
             $jsondata["success"] = true;
-            $jsondata["redirect"] = $url;
             echo json_encode($jsondata);
             exit;
         } else {
-            $url = friendly('?module=home&function=init&param=503', true);
-            $jsondata["success"] = true;
-            $jsondata["redirect"] = $url;
+            $jsondata["success"] = false;
             echo json_encode($jsondata);
             exit;
         }

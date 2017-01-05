@@ -133,9 +133,14 @@
     margin:1%;
 }
 
-.fb{
+li.fb a{
 
-    background-image:url("https://findmenu.es/modules/users/view/img/fbsig.png");
+    background-image:url("/frontend/assets/media/fbsig.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding:110px;
+    margin:1%;
+  
 }
 
 /*quitamos el padding para que este a la izquiereda*/

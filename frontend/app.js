@@ -22,6 +22,18 @@ app.config(['$routeProvider',
                     controller: "verifyCtrl"
                 })
 
+                //Restore
+                .when("/users/recuperar", {
+                    templateUrl: "frontend/modules/users/view/restore.view.html",
+                    controller: "restoreCtrl"
+                })
+
+                //ChangePass
+                .when("/users/cambiarpassword/:token", {
+                    templateUrl: "frontend/modules/users/view/changepass.view.html",
+                    controller: "changepassCtrl"
+                })
+
 
 
 

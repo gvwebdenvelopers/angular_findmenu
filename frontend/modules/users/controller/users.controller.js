@@ -216,4 +216,63 @@ app.controller('verifyCtrl', function (UsersService, $location, CommonService, $
     });
 });
 
+app.controller('restoreCtrl', function ($scope, services, $timeout, $location, CommonService) {
+    $scope.restore = {
+        inputEmail: ""
+    };
+
+    $('.modal').remove();
+    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    
+    $scope.SubmitRestore = function () {
+        
+        var data = {"inputEmail": $scope.restore.inputEmail, "token": 'restore_form'};
+        var restore_form = JSON.stringify(data);
+        
+        services.post('users', 'recuperar', restore_form).then(function (response) {
+            console.log(response);
+            response = response.split("|");
+            $scope.message = response[1];
+            if (response[0] == 'true') {
+                $scope.class = 'alert alert-success';
+                $timeout(function () {
+                    $location.path('/');
+                    CommonService.banner("Revisa la bandeja de tu correo debes haber recibido un mail para el cambio de contraseña", "");
+                }, 3000);
+            } else {
+                $scope.class = 'alert alert-error';
+                $timeout(function () {
+                    $location.path('/');
+                    CommonService.banner("Intentelo mas tarde...", "");
+                }, 3000);
+            }
+        });
+    };
+});
+
+app.controller('changepassCtrl', function ($route, $scope, services, $location, CommonService) {
+    $scope.token = $route.current.params.token;
+    $scope.changepass = {
+        inputPassword: ""
+    };
+
+    $scope.SubmitChangePass = function () {
+        var data = {"password": $scope.changepass.inputPassword, "token": $scope.token};
+        var passw = JSON.stringify(data);
+        
+        services.put('users', 'update_pass', passw).then(function (response) {
+            //console.log(response);
+            if (response.success) {
+                $location.path('/');
+                CommonService.banner("Tu contraseña se ha cambiado correctamente", "");
+            } else {
+                CommonService.banner("Error en el servidor", "Err");
+            }
+        });
+    };
+});
+
+
+
 

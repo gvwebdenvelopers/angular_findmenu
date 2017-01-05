@@ -5,7 +5,6 @@
         <div class="modal-header"><h2 class="form-contact-heading">Cambia tu contraseña</h2></div>
         <p class="subject">Por favor introduce tu nueva contraseña.</p>
         <div class="control-group">
-            <input type="password" id="inputPassword" name="inputPassword" placeholder="Password"  >
             <input required ng-model="changepass.inputPassword" type="password" id="inputPassword" name="inputPassword" placeholder="Password" class="text">
             <span class="text-danger" ng-show="changepass_form.inputPassword.$error.required && (changepass_form.inputPassword.$dirty || changepass_form.inputPassword.$touched)">El campo es obligatorio</span>
         </div>
@@ -15,7 +14,6 @@
         </div>      
         <input class="btn-read-more" type="button" name="submit" id="changeBtn" value="Enviar" 
                ng-show="changepass_form.inputPassword.$valid && changepass_form.inputPassword2.$valid && changepass.inputPassword === changepass.inputPassword2" ng-click="SubmitChangePass()"/>
-        <!--<img src="<?php echo CONTACT_IMG_PATH; ?>ajax-loader.gif" alt="ajax loader icon" class="ajaxLoader" />-->
 
         <div id="resultMessage"></div>
     </form>
