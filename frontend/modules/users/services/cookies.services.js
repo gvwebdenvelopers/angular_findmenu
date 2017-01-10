@@ -16,11 +16,11 @@ app.factory("cookiesService", ['$cookies', 'localstorageService',
             var user = Base64_encode(users.user);
             var usertype = Base64_encode(users.usertype);
             var email = Base64_encode(users.email);
-            
+            var name = Base64_encode(users.name);
             
             //almacenarlos en la cookie session
             $cookies.putObject("session", 
-            {user: user, avatar: users.avatar, usertype: usertype, email: email}, 
+            {user: user, avatar: users.avatar, usertype: usertype, email: email, name:name}, 
             {expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)});
             
             //almacenarlos en localstorage
@@ -54,14 +54,16 @@ app.factory("cookiesService", ['$cookies', 'localstorageService',
              var user = Base64_encode(users.user);
             var usertype = Base64_encode(users.usertype);
             var email = Base64_encode(users.email);
-            return {user: user, avatar: users.avatar, usertype: usertype, email: email};
+            var name = Base64_encode(users.name);
+            return {user: user, avatar: users.avatar, usertype: usertype, email: email, name: name};
         }
         
         function GetCredentials_decode() {
             var user = Base64_decode($cookies.getObject("session").user);
             var usertype = Base64_decode($cookies.getObject("session").usertype);
             var email = Base64_decode($cookies.getObject("session").email);
-            return {user: user, avatar: $cookies.getObject("session").avatar, usertype: usertype, email:email};
+            var name = Base64_decode($cookies.getObject("session").name);
+            return {user: user, avatar: $cookies.getObject("session").avatar, usertype: usertype, email:email,name: name};
         }
         
         function Base64_encode(input) {

@@ -1,0 +1,20 @@
+10.01.2017 05:40:06  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 115 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+10.01.2017 06:57:31  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 115 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+10.01.2017 07:10:10  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 115 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+10.01.2017 07:14:35  |  User:   | ERROR: [8] Undefined index: password
+Notice on line 115 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+10.01.2017 07:17:29  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 115 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200

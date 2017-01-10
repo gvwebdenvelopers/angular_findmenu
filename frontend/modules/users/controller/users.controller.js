@@ -73,11 +73,11 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
 
     $scope.loginTw = function () {
         twitterService.connectTwitter().then(function () {
-            console.log(twitterService.isReady());
+           // console.log(twitterService.isReady());
             if (twitterService.isReady()) {
                 twitterService.getUserInfo().then(function (data) {
-                    console.log(data);
-                    services.post("user", 'social_signin', {id: data.id, name: data.name, avatar: data.profile_image_url_https, twitter: true})
+                    //console.log(data);
+                    services.post("users", 'social_signin', {id: data.id, name: data.name, avatar: data.profile_image_url_https, twitter: true, social:'twitter'})
                     .then(function (response) {
                         //console.log(response[0]);
                         if (!response.error) {
@@ -100,7 +100,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
                 if (user.error){
                     $scope.close();
                 }else{
-                    services.post("users", 'social_signin', {id: user.id, name: user.first_name, lastname: user.last_name, email: user.email})
+                    services.post("users", 'social_signin', {id: user.id, name: user.first_name, lastname: user.last_name, email: user.email, social:'facebook' })
                     .then(function (response) {
                         //console.log(response);
                         //console.log(response[0]);
@@ -198,10 +198,11 @@ app.controller('verifyCtrl', function (UsersService, $location, CommonService, $
     }
     services.get("users", "activar", token).then(function (response) {
         console.log(response);
-        //console.log(response.user[0].usuario);
+        console.log(response.user[0].usuario);
         if (response.success) {
             CommonService.banner("Su cuenta ha sido satisfactoriamente verificada", "");
             cookiesService.SetCredentials(response.user[0]);
+            
             UsersService.login();
             $location.path('/');
         } else {

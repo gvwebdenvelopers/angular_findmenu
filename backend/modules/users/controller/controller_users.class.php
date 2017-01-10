@@ -10,9 +10,6 @@ class controller_users {
     }
 
     ////////////////////////////////////////////////////begin signup///////////////////////////////////////////
-    //function signup() { //refactorizar loadView para hacer los requires allí     
-    // loadView('modules/users/view/', 'signup.php');
-    //}
 
     public function signup_user() {
         $jsondata = array();
@@ -115,7 +112,7 @@ class controller_users {
             //loadModel
             $arrValue = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
 
-            $arrValue = password_verify($email['pass'], $arrValue[0]['password']);
+           // $arrValue = password_verify($email['pass'], $arrValue[0]['password']);
         } catch (Exception $e) {
             $arrValue = "error";
         }
@@ -213,7 +210,6 @@ class controller_users {
     public function social_signin() { //utilitzada per Facebook i Twitter
         $user = $_POST;
 
-
         set_error_handler('ErrorHandler');
         try {
 
@@ -226,8 +222,13 @@ class controller_users {
         if (!$arrValue[0]["total"]) {
 
 
-            if (!$user['avatar']) {
-                $user['avatar'] = 'http://graph.facebook.com/' . ($user['id']) . '/picture';
+            if ($user['social']=='facebook') {
+                $user['avatar'] = 'https://graph.facebook.com/' . ($user['id']) . '/picture';
+            }
+            
+            if ($user['social']=='twitter') {
+                $user['email'] = '';
+                $user['lastname']='';
             }
             $arrArgument = array(
                 'active' => "1",
@@ -247,8 +248,9 @@ class controller_users {
                 $value = false;
             }
             restore_error_handler();
-        } else
+        } else{
             $value = true;
+        }
 
         if ($value) {
 

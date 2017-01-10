@@ -3,7 +3,7 @@ app.factory('twitterService', function ($q) {
     return {
         initialize: function () {
             //initialize OAuth.io with public key of the application
-            OAuth.initialize('8kVmJREnmiCHJcTr38vW5y4V5', {cache: true});
+            OAuth.initialize('fw-LhU2Xg7Xs29jlVzzeIlBgT20', {cache: true});
             //try to create an authorization result when the page loads, this means a returning user won't have to click the twitter button again
             authorizationResult = OAuth.create('twitter');
         },
@@ -17,7 +17,7 @@ app.factory('twitterService', function ($q) {
                     authorizationResult = result;
                     deferred.resolve();
                 } else {
-                    console.log("autorizacion twiter: " + result);
+                    console.log(result);
                 }
             });
             return deferred.promise;
