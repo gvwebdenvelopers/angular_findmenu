@@ -10,11 +10,11 @@
             <div class="modal-body">
                 <form >
                     <div>
-                        <input required class="text" type="text" id="email" name="email" ng-model="form.email" placeholder="Email">
+                        <input required class="text" type="email" id="email" name="email" ng-model="form.profile" placeholder="Email or user">
                     </div>
                     <div>
                         <input required class="text" type="password" id="pass" name="pass" ng-model="form.pass" placeholder="Password">
-                        <span class='error' ng-show="err"> {{errorpass}}</span>
+                        <div class='error' ng-show="err"> {{errorpass}}</div>
                     </div>
 
                     <!--<input class="btn-read-more" type="button" name="submitLog" id="submitLog" ng-click="login()" ng-show="login_form.email.$valid && login_form.pass.$valid" value="Send" />-->

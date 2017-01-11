@@ -3,25 +3,25 @@
         <h1 class="header-h"> Registrarse</h1>
         <form autocomplete="on">
             <input required ng-model="signup.inputEmail" type="email" id="inputEmail" name="inputEmail" placeholder="Escribe tu email"  autofocus="autofocus" ng-pattern="/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*$/i" ng-change="change_signup()">
-            <span class="text-danger" ng-show="signup_form.inputEmail.$error.required && (signup_form.inputEmail.$dirty || signup_form.inputEmail.$touched)">El campo es obligatorio</span>
-            <span class="text-danger" ng-show="signup_form.inputEmail.$error.email">Email no valido</span>
-            <span class="text-danger" ng-show="AlertMessage" ng-model="signup.email_error">{{signup.email_error}}</span>
+            <!--<span class='error' ng-show="signup_form.inputEmail.$error.required && (signup_form.inputEmail.$dirty || signup_form.inputEmail.$touched)">El campo es obligatorio</span>
+            <span class='error' ng-show="signup_form.inputEmail.$error.email">Email no valido</span>-->
+            <div class='error' ng-show="err"> {{error}}</div>
 
             <input required ng-model="signup.inputPass" type="password" id="inputPass" name="inputPass" ng-pattern="/^.{6,12}$/"
                    placeholder="Contraseña" class="input-block-level" dir="auto"  ng-change="change_signup()">
-            <span class="text-danger" ng-show="signup_form.inputPass.$error.required && (signup_form.inputPass.$dirty || signup_form.inputPass.$touched)">El campo es obligatorio</span>
+            <!--<span class="text-danger" ng-show="signup_form.inputPass.$error.required && (signup_form.inputPass.$dirty || signup_form.inputPass.$touched)">El campo es obligatorio</span>
             <span class="text-danger" ng-show="signup_form.inputPass.$error.pattern">Passwd no válido</span><br />
-            <span class="text-danger" ng-show="AlertMessage" ng-model="signup.pass_error">{{signup.pass_error}}</span>
+            <span class="text-danger" ng-show="AlertMessage" ng-model="signup.pass_error">{{signup.pass_error}}</span>-->
 
 
             <input required ng-model="signup.inputPass2" type="password" id="inputPass2" name="inputPass2" 
                    placeholder="Contraseña" class="input-block-level" dir="auto" maxlength="100" ng-change="change_signup()">
-            <span class="text-danger" ng-show="signup_form.inputPass2.$error.required && (signup_form.inputPass2.$dirty || signup_form.inputPass2.$touched)">El campo es obligatorio</span>
-            <span class="text-danger" data-ng-show="signup.inputPass !== signup.inputPass2"> Password do not match</span>
+            <!--<span class="text-danger" ng-show="signup_form.inputPass2.$error.required && (signup_form.inputPass2.$dirty || signup_form.inputPass2.$touched)">El campo es obligatorio</span>-->
+            <div class='error' data-ng-show="signup.inputPass !== signup.inputPass2"> Password do not match</div>
 
             <div class="submit_signup">
-                <input class="btn btn-primary" type="button" name="submit" id="submitBtn"  value="Enviar" 
-                       ng-show="signup_form.inputEmail.$valid && signup_form.inputPass.$valid && signup_form.inputPass2.$valid && signup.inputPass === signup.inputPass2" ng-click="SubmitSignUp()" />
+                <!--<input class="btn btn-primary" type="button" name="submit" id="submitBtn"  value="Enviar" 
+                       ng-show="signup_form.inputEmail.$valid && signup_form.inputPass.$valid && signup_form.inputPass2.$valid && signup.inputPass === signup.inputPass2" ng-click="SubmitSignUp()" />-->
                 
                 <input class="btn btn-primary" type="button" name="submit" id="submitBtn"  value="Enviar" 
                         ng-click="SubmitSignUp()" />

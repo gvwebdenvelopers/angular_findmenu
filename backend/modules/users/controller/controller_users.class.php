@@ -21,6 +21,7 @@ class controller_users {
 
             $avatar = get_gravatar($result['data']['user_email'], $s = 400, $d = 'identicon', $r = 'g', $img = false, $atts = array());
             $userName = explode('@', $result['data']['user_email']);
+
             $arrArgument = array(
                 'avatar' => $avatar,
                 'email' => $result['data']['user_email'],
@@ -38,17 +39,30 @@ class controller_users {
 
                 //loadModel
                 $arrValue = loadModel(MODEL_USER, "users_model", "count", array('column' => array('user'), 'like' => array($arrArgument['user'])));
-
+                
                 if ($arrValue[0]['total'] == 1) {
-                    $arrValue = false;
-                    $typeErr = 'Name';
-                    $error = "Ya existe un usuario con esta cuenta: " . $arrArgument['email'];
+                        $arrValue = false;      
+                        $jsondata["success"] = false;
+                        $jsondata['typeErr'] = "Name";
+                        $jsondata['message'] = "Ya existe un usuario con esta cuenta: " . $arrArgument['email'];
+                        echo json_encode($jsondata);
+                        exit;
                 } else {
-                    $arrValue = loadModel(MODEL_USER, "users_model", "count", array('column' => array('email'), 'like' => array($arrArgument['email'])));
-                    if ($arrValue[0]['total'] == 1) {
-                        $arrValue = false;
-                        $typeErr = 'Email';
-                        $error = "Email ya registrado";
+                    //loadModel
+                    $arrArgument['token'] = "Ver" . md5(uniqid(rand(), true));
+
+                    $arrValue = loadModel(MODEL_USER, "users_model", "create_user", $arrArgument);
+
+                    if ($arrValue) {
+                        sendtoken($arrArgument, "alta");
+                        $jsondata["success"] = true;
+                        echo json_encode($jsondata);
+                        exit;
+                    } else {
+                        $jsondata["success"] = false;
+                        $jsondata['typeErr'] = "error_server";
+                        echo json_encode($jsondata);
+                        exit;
                     }
                 }
             } catch (Exception $e) {
@@ -56,33 +70,6 @@ class controller_users {
                 $arrValue = false;
             }
             restore_error_handler();
-            /* Fin de control de registro */
-
-
-            set_error_handler('ErrorHandler');
-            try {
-                //loadModel
-
-                $arrArgument['token'] = "Ver" . md5(uniqid(rand(), true));
-
-                $arrValue = loadModel(MODEL_USER, "users_model", "create_user", $arrArgument);
-                //echo "en try " . $arrValue;
-            } catch (Exception $e) {
-                $arrValue = false;
-            }
-            restore_error_handler();
-
-            if ($arrValue) {
-                sendtoken($arrArgument, "alta");
-                $jsondata["success"] = true;
-                echo json_encode($jsondata);
-                exit;
-            } else {
-                $jsondata["success"] = false;
-                $jsondata['typeErr'] = "error_server";
-                echo json_encode($jsondata);
-                exit;
-            }
         } else {
             $jsondata["success"] = false;
             $jsondata['data'] = $result;
@@ -92,14 +79,11 @@ class controller_users {
 
     ////////////////////////////////////////////////////begin signin///////////////////////////////////////////
     public function login() {
-        $email = $_POST;
+        $user = $_POST;
 
-        $column = array(
-            'email'
-        );
-        $like = array(
-            $email['email']
-        );
+        $column = array('user');
+        $userName = explode('@', $user['email']);
+        $like = array($userName[0]);
 
         $arrArgument = array(
             'column' => $column,
@@ -112,7 +96,7 @@ class controller_users {
             //loadModel
             $arrValue = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
 
-           // $arrValue = password_verify($email['pass'], $arrValue[0]['password']);
+            $arrValue = password_verify($user['pass'], $arrValue[0]['password']);
         } catch (Exception $e) {
             $arrValue = "error";
         }
@@ -123,19 +107,19 @@ class controller_users {
                 set_error_handler('ErrorHandler');
                 try {
                     $arrArgument = array(
-                        'column' => array("email", "active"),
-                        'like' => array($email['email'], "1")
+                        'column' => array("user", "active"),
+                        'like' => array($userName[0], "1")
                     );
                     $arrValue = loadModel(MODEL_USER, "users_model", "count", $arrArgument);
 
                     if ($arrValue[0]["total"] == 1) {
                         $arrArgument = array(
-                            'column' => array("email"),
-                            'like' => array($email['email']),
+                            'column' => array("user"),
+                            'like' => array($userName[0]),
                             'field' => array('*')
                         );
-                        $email = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
-                        echo json_encode($email);
+                        $user = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
+                        echo json_encode($user);
                         exit();
                     } else {
                         $value = array(
@@ -151,6 +135,7 @@ class controller_users {
                         "datos" => 503
                     );
                     echo json_encode($value);
+                    exit();
                 }
             } else {
                 $value = array(
@@ -158,6 +143,7 @@ class controller_users {
                     "datos" => "El usuario y la contraseña no coinciden"
                 );
                 echo json_encode($value);
+                exit();
             }
         } else {
             $value = array(
@@ -165,6 +151,7 @@ class controller_users {
                 "datos" => 503
             );
             echo json_encode($value);
+            exit();
         }
     }
 

@@ -31,7 +31,7 @@ app.controller('menuCtrl', function ($scope, $uibModal, UsersService, $rootScope
 app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
         CommonService, $location, UsersService,  $timeout, cookiesService, facebookService, twitterService) {
     $scope.form = {
-        email: "",
+        profile: "",
         pass: ""
     };
         
@@ -42,7 +42,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
         $uibModalInstance.dismiss('cancel');
     };
     $scope.login = function () {
-        var data = {"email": $scope.form.email, "pass": $scope.form.pass};
+        var data = {"email": $scope.form.profile, "pass": $scope.form.pass};
         data = JSON.stringify(data);
         
         services.post("users", "login", data).then(function (response) {
@@ -65,7 +65,7 @@ app.controller('modalWindowCtrl', function ($scope, $uibModalInstance, services,
                     $timeout(function () {
                         $scope.err = false;
                         $scope.errorpass = "";
-                    }, 1500);
+                    }, 2000);
                 }
             }
         });
@@ -160,28 +160,14 @@ app.controller('signupCtrl', function ($scope, services, $location, $timeout, Co
                 }, 2000);
             } else {
                 if (response.typeErr === "Name") {
-                    $scope.AlertMessage = true;
+                    $scope.err = true;
+                    $scope.error = response.message;
                     $timeout(function () {
-                        $scope.AlertMessage = false;
-                    }, 5000);
-                    $scope.signup.user_error = response.error;
+                        $scope.err = false;
+                        $scope.errorpass = "";
+                    }, 3000);
                     
-                } else if (response.typeErr === "Email") {
-                    $scope.AlertMessage = true;
-                    $timeout(function () {
-                        $scope.AlertMessage = false;
-                    }, 5000);
-                    $scope.signup.email_error = response.error;
-                    
-                } else if (response.typeErr === "error") {
-                    //console.log(response.error);
-                    $scope.AlertMessage = true;
-                    $timeout(function () {
-                        $scope.AlertMessage = false;
-                    }, 5000);
-                    
-                    $scope.signup.email_error = response.error.email;
-                    $scope.signup.pass_error = response.error.password;
+                  
                 } else if (response.typeErr === "error_server"){
                     CommonService.banner("Error en el servidor", "Err");
                 }
