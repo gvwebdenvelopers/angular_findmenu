@@ -1,1 +1,17 @@
 
+11.01.2017 05:34:37  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+11.01.2017 05:34:41  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+11.01.2017 05:34:45  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+11.01.2017 05:34:49  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
