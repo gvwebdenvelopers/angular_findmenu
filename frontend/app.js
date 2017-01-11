@@ -10,7 +10,15 @@ app.config(['$routeProvider',
                 .when("/cookies", {templateUrl: "frontend/modules/cookies/view/cookies.view.html", controller: "cookiesCtrl"})
 
                 //Contact
-                .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
+                .when("/contact", {
+                    templateUrl: "frontend/modules/contact/view/contact.view.html",
+                    controller: "contactCtrl",
+                    resolve:{
+                        data: function (directives, $route) {
+                            return directives.get('home', 'socialnet');
+                        }
+                    }
+                })
 
                 //Módulo de users
                 //Signup
