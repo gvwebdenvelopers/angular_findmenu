@@ -9,6 +9,9 @@ app.config(['$routeProvider',
                 //cookies
                 .when("/cookies", {templateUrl: "frontend/modules/cookies/view/cookies.view.html", controller: "cookiesCtrl"})
 
+                //Contact
+                .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
+
                 //Módulo de users
                 //Signup
                 .when("/users/alta/", {
@@ -48,4 +51,3 @@ app.config([
         FacebookProvider.init(myAppId);
     }
 ]);
-
