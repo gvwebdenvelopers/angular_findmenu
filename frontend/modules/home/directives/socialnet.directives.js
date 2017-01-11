@@ -6,9 +6,9 @@ app.directive([
             template:
               '<h2>Contacta con nosotros en redes sociales' +
               '<section id="socialNetwork" class="responsive-container">' +
-              '<img src="" class="icon-socialnet">' +
-              '<img src="" class="icon-socialnet">' +
-              '<img src="" class="icon-socialnet">' +
+              '<div class="icon-socialnet facebook-button"/>' +
+              '<div class="icon-socialnet facebook-button"/>' +
+              '<div class="icon-socialnet facebook-button"/>' +
               '</section>';
         }
     }

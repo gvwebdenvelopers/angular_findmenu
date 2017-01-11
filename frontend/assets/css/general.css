@@ -2,7 +2,7 @@
 
 /*Css para la barra de navegación principal*/
 
-div.navbar {    
+div.navbar {
     background-color: #313b3d;
     border-color: transparent;
     width: 100%;
@@ -29,7 +29,7 @@ nav ul li a {
     display: block; /* Convertimos los elementos a en elementos bloque para manipular el padding */
     padding: 20px;
     color: #FFB03B;
-    text-decoration:none; 
+    text-decoration:none;
 
 }
 
@@ -42,6 +42,45 @@ nav ul li a:hover{
 li.active a{
     color: #37a000 !important;
 }
+
+.responsive-container{
+    width: 100%;
+}
+/*Botones redes sociales*/
+.facebook-button{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/fbsig.png);
+    display: inline-block;
+    min-height: 20px;
+    height: auto;
+    padding: 1%;
+    min-width: 105px;
+    width: 33%;
+}
+.google-button{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/googlesig.png);
+    display: inline-block;
+    min-height: 20px;
+    height: auto;
+    padding: : 1%;
+    min-width: 105px;
+    width: 33%;
+}
+.twitter-button{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/twsig.png);
+    display: inline-block;
+    min-height: 20px;
+    height: auto;
+    padding: 1%;
+    min-width: 105px;
+    width: 33%;
+}
+
 
 /*Css footer*/
 
@@ -77,5 +116,3 @@ li.active a{
     float: none;
     margin-bottom: 20px;
 }
-
-

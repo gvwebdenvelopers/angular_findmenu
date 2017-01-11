@@ -13,11 +13,6 @@ app.config(['$routeProvider',
                 .when("/contact", {
                     templateUrl: "frontend/modules/contact/view/contact.view.html",
                     controller: "contactCtrl",
-                    resolve:{
-                        data: function (directives, $route) {
-                            return directives.get('home', 'socialnet');
-                        }
-                    }
                 })
 
                 //Módulo de users
