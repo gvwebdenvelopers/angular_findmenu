@@ -31,7 +31,7 @@ class controller_contact {
                     $value = false;
                 }*/
 
-                enviar_email($arrArgument);
+                send_email($arrArgument);
 
             } catch (Exception $e) {
                 $value = false;
@@ -58,7 +58,7 @@ class controller_contact {
                 }*/
 
                 sleep(5);
-                enviar_email($arrArgument);
+                send_email($arrArgument);
                 echo "true|Tu mensaje ha sido enviado correctamente";
 
             } catch (Exception $e) {
