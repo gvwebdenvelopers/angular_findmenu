@@ -50,43 +50,6 @@ function response_code($code = NULL) {
     return $return = array('code' => $code, 'text' => $text);
 }
 
-function showErrorPage($code = 0, $message = "", $http = "", $num_http = 0) {
-    switch ($code) {
-        case 0:
-            paint_template_error($message);
-            die();
-            break;
-        case 1:
-            //header($http, true, $num_http);
-            loadView();
-            break;
-        case 2:
-            $log = log::getInstance();
-            $log->add_log_general($message, $_SESSION['module'], "response " . http_response_code()); //$text, $controller, $function
-            $log->add_log_user($message, "", $_SESSION['module'], "response " . http_response_code()); //$msg, $username = "", $controller, $function
-
-            $jsondata["error"] = $message;
-            header($http, true, $num_http);
-            echo json_encode($jsondata);
-            exit;
-            break;
-        case 3:
-            paint_template_search($message);
-            exit;
-            break;
-        case 4:
-            require_once(VIEW_PATH_INC . "header.php");
-            require_once(VIEW_PATH_INC . "menu.php");
-            //showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
-            loadView("400");
-            require_once(VIEW_PATH_INC . "footer.php");
-            die();
-            break;
-        default:
-            exit;
-            break;
-    }
-}
 
 function ErrorHandler($errno, $errstr, $errfile, $errline) {
     $error = "";
