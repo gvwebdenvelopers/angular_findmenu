@@ -1,98 +1,112 @@
-<!-- create users -->
 
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css">-->
-<!--<link type="text/css" href="<?php echo USERS_CSS_PATH ?>users_style.css" rel="stylesheet">
-<link type="text/css" href="<?php echo USERS_CSS_PATH ?>profile.css" rel="stylesheet">-->
-<section id="form_users" class="section-padding">
-  <div class="container">
-          <h1 class="header-h"> Editar perfil</h1>
-          <div class="col-md-8 col-sm-8">
-              <div class="col-md-6 col-sm-6 contact-form pad-form">
-                  <div class="form-group label-floating is-empty">
-                      <input id="input_name" class="form-control" type="text" placeholder="Nombre">
-                  </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                  <div class="form-group label-floating is-empty">
-                      <input id="birth_date" class="form-control" type="text" placeholder="Fecha de nacimiento: ">
-                  </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form pad-form">
-                  <div class="form-group label-floating is-empty">
-                      <input id="last_name" class="form-control" type="text" placeholder="Apellidos">
-                  </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                  <div class="form-group label-floating is-empty">
-                      <input id="user_email" class="form-control" type="email" placeholder="Email">
-                  </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                <div class="form-group label-floating is-empty">
-                  <p>Tipo de usuario:
-                  <select class="form-control" id="inputType" name="Tipo de usuario">
-                      <option value="client">Cliente</option>
-                      <option value="offeror">Ofertante</option>
-                  </select></p>
-                </div>
-              </div>
-              <!--<div id="inputfavoriteMenus" class="col-md-6 col-sm-6 contact-form">
-                  <label class="pefil">Menus preferidos:</label>
-                  <div class="form-group label-floating is-empty">
-                      <input id="favoriteMenus" name="Menus preferidos" readonly></input>
-                  </div>
-              </div>
-              <div id="inputPassword" class="col-md-6 col-sm-6 contact-form">
-                  <div class="form-group label-floating is-empty">
-                    <label class="pefil">Introduce tu contraseña para modificar tus datos:</label>
-                    <input id="password" class="form-control" type="pass" placeholder="Contraseña" required>
-                  </div>
-              </div>-->
-              <div class="col-md-6 col-sm-6 contact-form">
-                  <label class="pefil">Pais:</label>
-                  <div class="form-group label-floating is-empty">
-                      <select id="country" name="pais"></select>
+<form id="profile_form" name="profile_form" class="form-perfil">
+    <br />
+    <div id="contenido" class="row">
+        <div class=" izq">
+            <div class="control-group">
+                <label class="nombre pefil">Nombre:</label>
+                <p>
+                    <input type="text" required id="inputName" ng-model="profile.name" name="inputName" placeholder="Nombre" ng-pattern="/^\D{3,30}$/"
+                    class="form-control" dir="auto" ng-minlength="2" maxlength="100" ng-change="change_profile()">
+                    <span class='error' ng-show="!profile_form.inputName.$valid && profile_form.inputName.$error.required && (profile_form.inputName.$dirty || profile_form.inputName.$touched)" >Nombre no válido</span>
+                    <span class="text-danger" ng-show="profile_form.inputName.$error.pattern">Nombre no válido</span><br />
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.nombre_error">{{user.nombre_error}}</span>
+                </p>
+            </div>
+            <div class="control-group">
+                <label class="pefil">Apellidos:</label>
+                <p>
+                    <input type="text" required ng-minlength="3" id="inputSurn" ng-model="profile.lastname" name="inputSurn" ng-pattern="/^\D{4,120}$/"
+                    placeholder="Apellidos" class="form-control" dir="auto" maxlength="100" ng-change="change_profile()">
+                    <span class='error' ng-show="!profile_form.inputSurn.$valid && profile_form.inputSurn.$error.required && (profile_form.inputSurn.$dirty || profile_form.inputSurn.$touched)" >Ingrese sus apellidos</span>
+                    <span class="text-danger" ng-show="profile_form.inputSurn.$error.pattern">Apellidos no válidos</span><br />
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.surn_error">{{user.surn_error}}</span>
+                </p>
+            </div>
+            <div class="control-group">
+                <label class="pefil">Fecha de Nacimiento:</label>
+                <p>
+                    <input type="text" calendar required id="inputBirth" ng-model="profile.date_birthday" name="inputBirth" 
+                    ng-pattern="/(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}/" class="form-control" dir="auto" maxlength="100" ng-change="change_profile()">
+                    <span class='error' ng-show="!profile_form.inputBirth.$valid && profile_form.inputBirth.$error.required && (profile_form.inputBirth.$dirty || profile_form.inputBirth.$touched)" >Fecha de nacimiento no válida</span>
+                    <span class="text-danger" ng-show="profile_form.inputBirth.$error.pattern">FNac no válida</span><br />
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.birth_error">{{user.birth_error}}</span>
+                </p>
+            </div>
+            <div class="control-group">
+                <label class="pefil">Contraseña:</label>
+                <p>
+                    <input required type="password" ng-model="profile.password" id="inputPass" name="inputPass" ng-pattern="/^.{6,12}$/"
+                    placeholder="Contraseña" class="form-control" dir="auto" ng-minlength="6" maxlength="100" ng-change="change_profile()">
+                    <span class='error' ng-show="!profile_form.inputPass.$valid && profile_form.inputPass.$error.required && (profile_form.inputPass.$dirty || profile_form.inputPass.$touched)" >Contraseña muy pequeña, mínimo 6 carácteres</span>
+                    <span class="text-danger" ng-show="profile_form.inputPass.$error.pattern">Passwd no válido</span><br />
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.pass_error">{{user.pass_error}}</span>
+                </p>
+            </div>
 
-                  </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                  <label class="pefil">Provincia:</label>
-                  <div class="form-group label-floating is-empty">
-                      <select id="province" name="provincia"></select>
+            
 
-                  </div>
-              </div>
-              <div class="col-md-6 col-sm-6 contact-form">
-                  <label class="pefil">Poblacion:</label>
-                  <div class="form-group label-floating is-empty">
-                      <select id="city" name="poblacion"></select>
+        </div>
+        <!--- Centro --->
+        <div class="center">
+            <br>
+            <h1 class="form-profile-heading" id="username">{{profile.user}}</h1>
+            <img id="avatar_user" src="{{profile.avatar}}" />
 
-                  </div>
-              </div>
-              <br />
-              <div class="col-md-12 contact-form">
-                <h1 class="form-profile-heading" id="username">Profile Image</h1>
-                <img id="avatar_user" src="" />
+            <div class="msg" ></div>
+            <br/>
+            <button id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
 
-                <span id="e_avatar" class="styerror" style="color:#FF0000"></span>
-                <div class="form-group" id="progress">
-                    <div id="bar"></div>
-                    <div id="percent">0%</div >
-                </div>
-                <div class="msg"></div>
-                <br/>
-                <div id="dropzone" class="dropzone"></div><br/>
-                <br/>
-
-              </div>
-              <div class="col-md-12 btnpad">
-                  <div class="contacts-btn-pad">
-                      <button type="button" id ="submit_users" name="submit_users" class="contacts-btn" value="submit">Actualizar perfil</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</section>
-<!-- / create users -->
+            <br/>
+            <p>
+                <input class="submit_user" type="button" ng-click="submit()" name="submit" id="submitBtn_user" value="Guardar" 
+                ng-show="profile_form.inputName.$valid && profile_form.inputSurn.$valid && profile_form.inputPass.$valid && profile_form.inputBirth.$valid && profile_form.inputBank.$valid"/>
+            </p>
+        </div>
+        <!--- Lateral Derecho --->
+        <div class=" der">
+            <label class="email pefil">Email:</label>
+            <p>
+                <input required type="text" ng-pattern="/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*$/i" 
+                id="inputEmail" ng-disabled="{{controlmail}}" ng-model="profile.email" name="inputEmail" 
+                placeholder="Email" class="form-control" maxlength="100" ng-change="change_profile()">
+                <span class='error' ng-show="!profile_form.inputEmail.$valid && profile_form.inputEmail.$error.required && (profile_form.inputEmail.$dirty || profile_form.inputEmail.$touched)" >Email no válido</span>
+                <span class="text-danger" ng-show="profile_form.inputEmail.$error.email">Email no valido</span>
+                <span class="text-danger" ng-show="AlertMessage" ng-model="user.email_error">{{user.email_error}}</span>
+            </p>
+            
+            <div class="control-group">
+                <label class="pefil">Pais:</label>
+                <p>
+                    <select name="country" id="country" ng-model="profile.country" 
+                            ng-options="item.sName for item in country" placeholder="Pais"  ng-change="resetCountry()"> 
+                        <option value="">Seleccione un pais</option>
+                    </select>
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.pais_error">{{user.pais_error}}</span>
+                </p>
+            </div>
+            <div class="control-group">
+                <label class="pefil">Provincia:</label>
+                <p>
+                    <select name="province" id="province" ng-model="profile.province"
+                            ng-options="item.nombre for item in province"  
+                     placeholder="Provincia" ng-change="resetValues()" ng-disabled="profile.country.sISOCode!='ES'">
+                        <option value="">Seleccione una provincia</option>
+                    </select>
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.prov_error">{{user.prov_error}}</span>
+                </p>
+            </div>
+            <div class="control-group">
+                <label class="pefil">Poblacion:</label>
+                <p>
+                    <select  name="city" id="city" ng-model="profile.city"
+                          ng-options="item.poblacion for item in cities 
+                          "placeholder="Poblacion" ng-disabled="profile.country.sISOCode!='ES'"> 
+                        <option value="">Seleccione una ciudad</option>
+                    </select>
+                    <span class="text-danger" ng-show="AlertMessage" ng-model="user.pob_error">{{user.pob_error}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,17 +1,17 @@
-app.factory("load_pais_prov_poblac", ['services', '$q',
+app.factory("load_country_prov_cities", ['services', '$q',
 function (services, $q) {
     var service = {};
-    service.load_pais = load_pais;
-    service.loadProvincia = loadProvincia;
-    service.loadPoblacion = loadPoblacion;
+    service.loadCountry = loadCountry;
+    service.loadProvince = loadProvince;
+    service.loadCity = loadCity;
     return service;
 
-    function load_pais() {
+    function loadCountry() {
         var deferred = $q.defer();
-        services.get("user", "load_pais_user", true).then(function (data) {
+        services.get("users", "load_country_user", true).then(function (data) {
             //console.log(data);
             if (data === 'error') {
-                deferred.resolve({ success: false, datas: "error_load_pais" });
+                deferred.resolve({ success: false, datas: "error_load_country" });
             } else {
                 deferred.resolve({ success: true, datas: data });
                 //$.each(data, function (i, valor) {
@@ -23,14 +23,14 @@ function (services, $q) {
         return deferred.promise;
     };
     
-    function loadProvincia() {
+    function loadProvince() {
         var deferred = $q.defer();
-        services.get("user", "load_provincias_user", true).then(function (data) {
+        services.get("users", "load_province_user", true).then(function (data) {
             //console.log(data);
             if (data === 'error') {
-                deferred.resolve({ success: false, datas: "error_load_provincias" });
+                deferred.resolve({ success: false, datas: "error_load_province" });
             } else {
-                deferred.resolve({ success: true, datas: data.provincias });
+                deferred.resolve({ success: true, datas: data.provinces });
                 //$.each(data.provincias, function (i, valor) {
                     //console.log(valor.id);
                     //console.log(valor.nombre);
@@ -40,14 +40,15 @@ function (services, $q) {
         return deferred.promise;
     };
     
-    function loadPoblacion(datos) {
+    function loadCity(datos) {
         var deferred = $q.defer();
-        services.post("user", "load_poblaciones_user", datos).then(function (data) {
+        services.post("users", "load_cities_user", datos).then(function (data) {
+            //console.log(datos);
             //console.log(data);
             if (data === 'error') {
-                deferred.resolve({ success: false, datas: "error_load_poblaciones" });
+                deferred.resolve({ success: false, datas: "error_load_cities" });
             } else {
-                deferred.resolve({ success: true, datas: data.poblaciones });
+                deferred.resolve({ success: true, datas: data.cities });
                 //$.each(data.poblaciones, function (i, valor) {
                     //console.log(valor.poblacion);
                 //});

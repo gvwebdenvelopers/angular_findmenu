@@ -260,32 +260,134 @@ app.controller('changepassCtrl', function ($route, $scope, services, $location, 
     };
 });
 
+//controlador del profile
+//la variable user la recogemos de la consulta que realizamos en app.js
 app.controller('profileCtrl', function ($scope, UsersService, services, user, $location, CommonService, 
-load_pais_prov_poblac, $timeout, cookiesService) {
-    console.log(user);
-    //console.log(user.user.usuario); //yomogan
-    
-    /*
+load_country_prov_cities, $timeout, cookiesService) {
+    console.log(user.user);
+    $scope.profile = {
+        //cargamos datos en los campos
+        name: user.user.name,
+        lastname: user.user.lastname,
+        date_birthday: user.user.birthdate,
+        password: user.user.password,
+        email: user.user.email,
+        user:user.user.user,
+        avatar: user.user.avatar,
+        country:user.user.country,
+         //country:"user.user.country",
+        province:user.user.province,
+        city:user.user.city
+            
+    };
+   /* 
     //admin
     $scope.admin = false;
     var user_cookie = cookiesService.GetCredentials();
     if (user_cookie) {
-        if( (users.user.user !== user_cookie.user) && (user_cookie.usertype != 'admin') )
+        //controlamos que no sea admin
+        if( (user.user.user !== user_cookie.user) && (user_cookie.usertype != 'admin') )
             $location.path("/");
-        else if (users.user.user !== user_cookie.user)
+        //caso en que el usuario es admin
+        else if (user.user.user !== user_cookie.user)
             $scope.admin = true;
     }else{
         $location.path("/");
     }
+    */
+   /*
+    //llenar los campos del form_profile con scope
+    user.user.password = "";
+    $scope.user = user.user;
+    $scope.drop = {
+        msgClass: ''
+    };*/
     
+    //si el nombre de usuario esta vacio colocamos el nombre
+    if (!isNaN(user.user.user))
+        $scope.user = user.user.name;
+        
+    //controlamos campos que no deben cambiar si estan en la bd
+    $scope.controlmail = false; //ng-disabled=false 
+    if (user.user.email)
+        $scope.controlmail = true;
+    
+    /*
+    //errors
+    $scope.error = function() {
+        $scope.user.nombre_error = ""; 
+        $scope.user.surn_error = "";
+        $scope.user.birth_error = "";
+        $scope.user.pass_error = "";
+        $scope.user.bank_error = "";
+        $scope.user.email_error = "";  
+        $scope.user.dni_error = "";
+        $scope.user.pais_error = "";
+        $scope.user.prov_error = "";
+        $scope.user.pob_error = "";
+    };
+    $scope.change_profile = function () {
+        $scope.user.nombre_error = ""; 
+        $scope.user.surn_error = "";
+        $scope.user.birth_error = "";
+        $scope.user.pass_error = "";
+        $scope.user.bank_error = "";
+        $scope.user.email_error = "";  
+        $scope.user.dni_error = "";
+    };
+    */
+    
+    //rellenar pais, provincias y poblaciones
+    load_country_prov_cities.loadCountry()
+    .then(function (response) {
+        //console.log(response.datas);
+        if(response.success){
+            $scope.country = response.datas;
+            
+        }else{
+            $scope.AlertMessage = true;
+            $scope.user.pais_error = "Error al recuperar la informacion de paises";
+            $timeout(function () {
+                $scope.user.pais_error = "";
+                $scope.AlertMessage = false;
+            }, 2000);
+        }
+    });
+    //$scope.provincias = null; //en ng-disabled
+    //$scope.poblaciones = null; //en ng-disabled
+
+    $scope.resetCountry = function () {
+        
+        if ($scope.profile.country.sISOCode == 'ES') {
+            //console.log($scope.profile.country);
+            load_country_prov_cities.loadProvince()
+            .then(function (response) {
+                //console.log(response.datas);
+                if(response.success){
+                    $scope.province = response.datas;
+                }else{
+                    $scope.AlertMessage = true;
+                    $scope.user.prov_error = "Error al recuperar la informacion de provincias";
+                    $timeout(function () {
+                        $scope.user.prov_error = "";
+                        $scope.AlertMessage = false;
+                    }, 2000);
+                }
+            });
+            $scope.profile.cities = null;
+        } //else { //en ng-disabled
+           // $scope.provincias = null;
+            //$scope.poblaciones = null;
+        }
     
     
     $scope.resetValues = function () {
-        var datos = {idPoblac: $scope.user.provincia.id};
-        load_pais_prov_poblac.loadPoblacion(datos)
+        var datos = {idCity: $scope.profile.province.id};
+        //console.log(datos);
+        load_country_prov_cities.loadCity(datos)
         .then(function (response) {
             if(response.success){
-                $scope.poblaciones = response.datas;
+                $scope.cities = response.datas;
             }else{
                 $scope.AlertMessage = true;
                 $scope.user.pob_error = "Error al recuperar la informacion de poblaciones";
@@ -297,6 +399,7 @@ load_pais_prov_poblac, $timeout, cookiesService) {
         });
     };
     
+    /*
     //dropzone
     $scope.dropzoneConfig = {
         'options': {
@@ -426,8 +529,3 @@ load_pais_prov_poblac, $timeout, cookiesService) {
         });
     };*/
 });
-
-
-
-
-

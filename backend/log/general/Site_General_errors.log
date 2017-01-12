@@ -3,91 +3,171 @@
 
 
 
-11/01/17 05:34:37 PM | ERROR: [8] Undefined offset: 0
-Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
-
--> Controller:users | Function:response 200
-11/01/17 05:34:41 PM | ERROR: [8] Undefined offset: 0
-Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
-
--> Controller:users | Function:response 200
-11/01/17 05:34:45 PM | ERROR: [8] Undefined offset: 0
-Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
-
--> Controller:users | Function:response 200
-11/01/17 05:34:49 PM | ERROR: [8] Undefined offset: 0
-Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
-
--> Controller:users | Function:response 200
-12/01/17 01:44:00 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+12/01/17 05:09:37 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:44:00 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+12/01/17 05:09:37 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:44:00 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+12/01/17 05:09:37 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:44:01 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+12/01/17 05:09:38 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:44:01 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+12/01/17 05:09:38 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:44:01 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+12/01/17 05:09:38 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:46:20 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+12/01/17 05:09:38 AM | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:10:50 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:46:20 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+12/01/17 05:10:50 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:46:20 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+12/01/17 05:10:50 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:46:22 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+12/01/17 05:10:51 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:46:22 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+12/01/17 05:10:51 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:46:22 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+12/01/17 05:10:51 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:47:28 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+12/01/17 05:10:51 AM | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:11:30 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:47:28 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+12/01/17 05:11:30 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:47:28 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+12/01/17 05:11:30 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:47:30 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+12/01/17 05:11:31 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:47:30 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+12/01/17 05:11:31 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
-12/01/17 01:47:30 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+12/01/17 05:11:31 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
 Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:11:31 AM | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:44 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:44 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:44 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:44 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:44 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:44 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:12:45 AM | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:35 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:35 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:35 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:36 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:36 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:36 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:13:36 AM | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:38 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:38 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:38 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:39 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:39 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:39 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 05:15:39 AM | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
 
 -> Controller:users | Function:response 200

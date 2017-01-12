@@ -22,6 +22,8 @@
   define('MODULES_PATH', SITE_ROOT . 'modules/');
   //utils
   define('UTILS', SITE_ROOT . '/utils/');
+  //resources
+  define('RESOURCES', SITE_ROOT . '/resources/');
 
   //Includes de 2º nivel
   

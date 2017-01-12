@@ -41,6 +41,8 @@ app.config(['$routeProvider',
                     resolve: {
                         user: function (services, cookiesService) {
                             //si hay un usuario logueado lo buscamos en la base de datos
+                            //esta consulta devuelve los datos del user y este será el valor
+                            //de user en el controlador
                             var user = cookiesService.GetCredentials();
                             if (user) {                     
                                 return services.get('users', 'profile_filler', user.user);
