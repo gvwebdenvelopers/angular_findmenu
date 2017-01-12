@@ -34,6 +34,22 @@ app.config(['$routeProvider',
                     controller: "changepassCtrl"
                 })
 
+                //Perfil
+                .when("/users/profile/", {
+                    templateUrl: "frontend/modules/users/view/profile.view.html",
+                    controller: "profileCtrl",
+                    resolve: {
+                        user: function (services, cookiesService) {
+                            //si hay un usuario logueado lo buscamos en la base de datos
+                            var user = cookiesService.GetCredentials();
+                            if (user) {                     
+                                return services.get('users', 'profile_filler', user.user);
+                            }
+                            return false;
+                        }
+                    }
+                })
+
 
 
 

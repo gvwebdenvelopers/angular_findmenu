@@ -19,3 +19,75 @@ Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/contro
 Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
 
 -> Controller:users | Function:response 200
+12/01/17 01:44:00 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:44:00 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:44:00 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:44:01 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:44:01 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:44:01 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:46:20 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:46:20 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:46:20 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:46:22 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:46:22 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:46:22 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:47:28 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:47:28 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:47:28 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:47:30 AM | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:47:30 AM | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200
+12/01/17 01:47:30 AM | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller:users | Function:response 200

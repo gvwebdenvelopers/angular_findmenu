@@ -260,6 +260,174 @@ app.controller('changepassCtrl', function ($route, $scope, services, $location, 
     };
 });
 
+app.controller('profileCtrl', function ($scope, UsersService, services, user, $location, CommonService, 
+load_pais_prov_poblac, $timeout, cookiesService) {
+    console.log(user);
+    //console.log(user.user.usuario); //yomogan
+    
+    /*
+    //admin
+    $scope.admin = false;
+    var user_cookie = cookiesService.GetCredentials();
+    if (user_cookie) {
+        if( (users.user.user !== user_cookie.user) && (user_cookie.usertype != 'admin') )
+            $location.path("/");
+        else if (users.user.user !== user_cookie.user)
+            $scope.admin = true;
+    }else{
+        $location.path("/");
+    }
+    
+    
+    
+    $scope.resetValues = function () {
+        var datos = {idPoblac: $scope.user.provincia.id};
+        load_pais_prov_poblac.loadPoblacion(datos)
+        .then(function (response) {
+            if(response.success){
+                $scope.poblaciones = response.datas;
+            }else{
+                $scope.AlertMessage = true;
+                $scope.user.pob_error = "Error al recuperar la informacion de poblaciones";
+                $timeout(function () {
+                    $scope.user.pob_error = "";
+                    $scope.AlertMessage = false;
+                }, 2000);
+            }
+        });
+    };
+    
+    //dropzone
+    $scope.dropzoneConfig = {
+        'options': {
+            'url': 'backend/index.php?module=user&function=upload_avatar',
+            addRemoveLinks: true,
+            maxFileSize: 1000,
+            dictResponseError: "Ha ocurrido un error en el server",
+            acceptedFiles: 'image/*,.jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF,.rar,application/pdf,.psd'
+        },
+        'eventHandlers': {
+            'sending': function (file, formData, xhr) {},
+            'success': function (file, response) {
+                //console.log(response);
+                response = JSON.parse(response);
+                //console.log(response);
+                if (response.resultado) {
+                    $(".msg").addClass('msg_ok').removeClass('msg_error').text('Success Upload image!!');
+                    $('.msg').animate({'right': '300px'}, 300);
+                    
+                    //console.log(response.datos);
+                    $scope.user.avatar = response.datos;
+                
+                    var user = {usuario: $scope.user.usuario, avatar: response.datos, 
+                    tipo: $scope.user.tipo, nombre: $scope.user.nombre};
+                    cookiesService.SetCredentials(user);
+                    
+                    UserService.login();
+                } else {
+                    $(".msg").addClass('msg_error').removeClass('msg_ok').text(response['error']);
+                    $('.msg').animate({'right': '300px'}, 300);
+                }
+            },
+            'removedfile': function (file, serverFileName) {
+                if (file.xhr.response) {
+                    $('.msg').text('').removeClass('msg_ok');
+                    $('.msg').text('').removeClass('msg_error');
+                    var data = jQuery.parseJSON(file.xhr.response);
+                    services.post("user", "delete_avatar", JSON.stringify({'filename': data}));
+                }
+            }
+    }};
+
+    $scope.submit = function () {
+        var pais, prov, pob, tipo = null;
+        if (!$scope.user.pais.sISOCode) { //el usuario no escoge pais
+            pais = " ";
+        }else{ //el usuario escoge pais
+            pais = $scope.user.pais.sISOCode;
+            if($scope.user.pais.sISOCode !== "ES"){
+                prov = " ";
+                pob = " ";
+            }
+        }
+        
+        if (!$scope.user.provincia.id) { //el usuario no escoge provincia
+            prov = " ";
+        }else{ //el usuario escoge provincia
+            prov = $scope.user.provincia.id;
+        }
+        
+        if (!$scope.user.poblacion.poblacion) { //el usuario no escoge poblacion
+            pob = " ";
+        }else{ //el usuario escoge poblacion
+            pob = $scope.user.poblacion.poblacion;
+        }
+        
+        if (!$scope.user.tipo) { 
+            tipo = "client";
+        }else{ 
+            tipo = $scope.user.tipo;
+        }
+        
+        //var data = JSON.stringify($scope.user);
+        var data = {"usuario": $scope.user.usuario, "email": $scope.user.email, "nombre": $scope.user.nombre, 
+        "apellidos": $scope.user.apellidos, "dni": $scope.user.dni, "password": $scope.user.password, 
+        "date_birthday": $scope.user.date_birthday, "bank": $scope.user.bank, "pais": pais,
+        "provincia": prov,"poblacion": pob, "avatar": $scope.user.avatar, "tipo": tipo};
+        var data1 = JSON.stringify(data);
+        //console.log(data);
+        
+        
+
+        services.put("user", "modify", data1).then(function (response) {
+            //console.log(response);
+            //console.log(response.user[0].usuario);
+            
+            //limpiar el avatar de :80
+            var avatar = response.user[0].avatar;
+            var buscar = avatar.indexOf(":80");
+            if(buscar !== -1){
+                var avatar = avatar.replace(":80", "");
+                response.user[0].avatar = avatar;
+            }
+            console.log(response.user[0].avatar);
+
+            if (response.success) {
+                cookiesService.SetCredentials(response.user[0]);
+                UserService.login();
+                if (tipo === "client") {
+                    $timeout(function () {
+                        $location.path($location.path());
+                        CommonService.banner("Su perfil ha sido modificado satisfactoriamente", "");
+                    }, 2000);
+                } else if (tipo === "admin"){
+                    $timeout(function () {
+                        $location.path('/admin/list');
+                        CommonService.banner("El usuario se ha modificado correctamente", "");
+                    }, 2000);
+                }
+            } else {
+                if (response.datos){
+                    //console.log(response.datos);
+                    $scope.AlertMessage = true;
+                    $timeout(function () {
+                        $scope.AlertMessage = false;
+                    }, 3000);
+                    $scope.user.user_error = response.datos.usuario;
+                    $scope.user.email_error = response.datos.email;
+                    $scope.user.nombre_error = response.datos.nombre;
+                    $scope.user.surn_error = response.datos.apellidos;
+                    $scope.user.pass_error = response.datos.password;
+                    $scope.user.birth_error = response.datos.date_birthday;
+                    $scope.user.bank_error = response.datos.bank;
+                    $scope.user.dni_error = response.datos.dni;
+                }
+            }
+        });
+    };*/
+});
+
+
 
 
 
