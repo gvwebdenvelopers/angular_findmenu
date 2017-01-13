@@ -311,16 +311,14 @@ load_country_prov_cities, $timeout, cookiesService) {
     if (user.user.email)
         $scope.controlmail = true;
     
-    /*
+    
     //errors
     $scope.error = function() {
         $scope.user.nombre_error = ""; 
         $scope.user.surn_error = "";
         $scope.user.birth_error = "";
         $scope.user.pass_error = "";
-        $scope.user.bank_error = "";
         $scope.user.email_error = "";  
-        $scope.user.dni_error = "";
         $scope.user.pais_error = "";
         $scope.user.prov_error = "";
         $scope.user.pob_error = "";
@@ -330,11 +328,10 @@ load_country_prov_cities, $timeout, cookiesService) {
         $scope.user.surn_error = "";
         $scope.user.birth_error = "";
         $scope.user.pass_error = "";
-        $scope.user.bank_error = "";
         $scope.user.email_error = "";  
-        $scope.user.dni_error = "";
+       
     };
-    */
+    
     
     //rellenar pais, provincias y poblaciones
     load_country_prov_cities.loadCountry()
@@ -382,11 +379,12 @@ load_country_prov_cities, $timeout, cookiesService) {
     
     $scope.resetValues = function () {
         var datos = {idCity: $scope.profile.province.id};
-        //console.log(datos);
+        
         load_country_prov_cities.loadCity(datos)
         .then(function (response) {
             if(response.success){
                 $scope.cities = response.datas;
+      
             }else{
                 $scope.AlertMessage = true;
                 $scope.user.pob_error = "Error al recuperar la informacion de poblaciones";
@@ -435,48 +433,42 @@ load_country_prov_cities, $timeout, cookiesService) {
                 }
             }
     }};
-/*
+
     $scope.submit = function () {
-        var pais, prov, pob, tipo = null;
-        if (!$scope.user.pais.sISOCode) { //el usuario no escoge pais
-            pais = " ";
+        var country, province, city;
+        if (!$scope.profile.country.sISOCode) { //el usuario no escoge pais
+            country = " ";
         }else{ //el usuario escoge pais
-            pais = $scope.user.pais.sISOCode;
-            if($scope.user.pais.sISOCode !== "ES"){
-                prov = " ";
-                pob = " ";
+            country = $scope.profile.country.sISOCode;
+            if($scope.profile.country.sISOCode !== "ES"){
+                province = " ";
+                city = " ";
             }
         }
         
-        if (!$scope.user.provincia.id) { //el usuario no escoge provincia
-            prov = " ";
+        if (!$scope.profile.province.id) { //el usuario no escoge provincia
+            province = " ";
         }else{ //el usuario escoge provincia
-            prov = $scope.user.provincia.id;
+            province = $scope.profile.province.id;
         }
         
-        if (!$scope.user.poblacion.poblacion) { //el usuario no escoge poblacion
-            pob = " ";
+        if (!$scope.profile.city.poblacion) { //el usuario no escoge poblacion
+            city = " ";
         }else{ //el usuario escoge poblacion
-            pob = $scope.user.poblacion.poblacion;
+            city = $scope.profile.city.poblacion;
         }
         
-        if (!$scope.user.tipo) { 
-            tipo = "client";
-        }else{ 
-            tipo = $scope.user.tipo;
-        }
         
         //var data = JSON.stringify($scope.user);
-        var data = {"usuario": $scope.user.usuario, "email": $scope.user.email, "nombre": $scope.user.nombre, 
-        "apellidos": $scope.user.apellidos, "dni": $scope.user.dni, "password": $scope.user.password, 
-        "date_birthday": $scope.user.date_birthday, "bank": $scope.user.bank, "pais": pais,
-        "provincia": prov,"poblacion": pob, "avatar": $scope.user.avatar, "tipo": tipo};
+        var data = {"user": $scope.profile.user, "user_email": $scope.profile.email, "name": $scope.profile.name, 
+        "last_name": $scope.profile.lastname, "password": $scope.profile.password, 
+        "date_birthday": $scope.profile.date_birthday, "country": country,
+        "province": province,"city": city, "avatar": $scope.profile.avatar};
         var data1 = JSON.stringify(data);
-        //console.log(data);
+        //console.log(data1);
         
-        
-
-        services.put("user", "modify", data1).then(function (response) {
+       
+        services.put("users", "modify", data1).then(function (response) {
             //console.log(response);
             //console.log(response.user[0].usuario);
             
@@ -487,22 +479,17 @@ load_country_prov_cities, $timeout, cookiesService) {
                 var avatar = avatar.replace(":80", "");
                 response.user[0].avatar = avatar;
             }
-            console.log(response.user[0].avatar);
+            //console.log(response.user[0].avatar);
 
             if (response.success) {
                 cookiesService.SetCredentials(response.user[0]);
-                UserService.login();
-                if (tipo === "client") {
+                UsersService.login();
+               
                     $timeout(function () {
                         $location.path($location.path());
                         CommonService.banner("Su perfil ha sido modificado satisfactoriamente", "");
                     }, 2000);
-                } else if (tipo === "admin"){
-                    $timeout(function () {
-                        $location.path('/admin/list');
-                        CommonService.banner("El usuario se ha modificado correctamente", "");
-                    }, 2000);
-                }
+                
             } else {
                 if (response.datos){
                     //console.log(response.datos);
@@ -516,10 +503,9 @@ load_country_prov_cities, $timeout, cookiesService) {
                     $scope.user.surn_error = response.datos.apellidos;
                     $scope.user.pass_error = response.datos.password;
                     $scope.user.birth_error = response.datos.date_birthday;
-                    $scope.user.bank_error = response.datos.bank;
-                    $scope.user.dni_error = response.datos.dni;
+                    
                 }
             }
         });
-    };*/
+    };
 });

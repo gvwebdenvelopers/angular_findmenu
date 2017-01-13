@@ -49,7 +49,7 @@ function validate_profile($value) {
 
     $resultado = filter_var_array($value, $filtro);
 
-    if ($resultado['birth_date']) {
+   /* if ($resultado['date_birthday']) {
         //validate to user's over 16
         $dates = validateAge($resultado['date_birthday']);
 
@@ -59,7 +59,7 @@ function validate_profile($value) {
         }
     }
 
-    /*
+    
     if ($resultado['date_birthday'] && $resultado['title_date']) {
         //compare date of birth with title_date
         $dates = valida_dates($resultado['birth_date'], $resultado['title_date']);
@@ -68,8 +68,8 @@ function validate_profile($value) {
             $error['birth_date'] = 'birth date must be before the date of registration and must have more than 16 years.';
             $valido = false;
         }
-    }
-    */
+    }*/
+    
     if ($value['password2'] != $resultado['password']) {
         $error['password2'] = "Pass doesn't match";
         $valido = false;
@@ -106,8 +106,8 @@ function validate_profile($value) {
 
         if (!$resultado['date_birthday']) {
             if ($resultado['date_birthday'] == "") {
-                $error['date_birthday'] = "this camp can't empty";
-                $valido = false;
+                
+                $valido = true;
             } else {
                 $error['date_birthday'] = 'error format date (mm/dd/yyyy)';
                 $valido = false;
@@ -134,7 +134,7 @@ function validate_profile($value) {
         $valido = false;
     };
 
-    return $return = array('resultado' => $valido, 'error' => $error, 'datos' => $resultado);
+    return $return = array('resultado' => $valido, 'error' => $error, 'data' => $resultado);
 }
 
 function valida_dates($start_days, $dayslight) {

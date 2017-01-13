@@ -3,7 +3,7 @@
 class controller_users {
 
     function __construct() {
-        require_once(UTILS_USERS . "functions_user.inc.php");
+        require_once(UTILS_USERS . "functions_profile.inc.php");
         include (LIBS . 'password_compat-master/lib/password.php');
         include (UTILS . 'upload.inc.php');
         $_SESSION['module'] = "users";
@@ -474,26 +474,28 @@ class controller_users {
 
     function modify() {
       $jsondata = array();
-      $userJSON = json_decode($_POST['mod_user_json'], true);
-
-      if(isset($_SESSION['avatar']['data'])){
+      $userJSON = $_POST;
+      $userJSON['password2'] = $userJSON['password'];
+      /*if(isset($_SESSION['avatar']['data'])){
             $userJSON['avatar'] = $_SESSION['avatar']['data'];
-      }
+      }*/
 
       $result = validate_profile($userJSON);
+      //$result['resultado']=true;
 
       if ($result['resultado']) {
           $arrArgument = array(
+              'user' => $_POST['user'],
               'avatar' => $userJSON['avatar'],
               'birthdate' => strtoupper($result['data']['date_birthday']),
               'email' => $result['data']['user_email'],
               'name' => $result['data']['name'],
               'lastname' => $result['data']['last_name'],
               'password' => password_hash($result['data']['password'], PASSWORD_BCRYPT),
-              'country' => $result['data']['country'],
-              'province' => $result['data']['province'],
-              'city' => $result['data']['city'],
-              'usertype' => $result['data']['type'],
+              'country' => $_POST['country'],
+              'province' => $_POST['province'],
+              'city' => $_POST['city'],
+              
           );
           $arrayDatos = array( 'column' => array('user'), 'like' => array( $userJSON['user'] ) );
           $j = 0;
@@ -512,24 +514,32 @@ class controller_users {
               $arrValue = false;
           }
           restore_error_handler();
-          if ($arrValue) {
-              $url = friendly('?module=users&function=profile&param=done', true);
-              $jsondata["arrValue"] = $arrValue;
-              $jsondata["success"] = true;
-              $jsondata["redirect"] = $url;
-              echo json_encode($jsondata);
-              exit;
-          } else {
-              $jsondata["arrValue"] = $arrValue;
-              $jsondata["success"] = false;
-              $jsondata["redirect"] = $url = friendly('?module=users&function=profile&param=503', true);
-              echo json_encode($jsondata);
-          }
-      } else {
-          $jsondata["success"] = false;
-          $jsondata['data'] = $result;
-          echo json_encode($jsondata);
-      }
+           if ($arrValue) {
+                //$jsondata["success"] = true;
+                //echo json_encode($jsondata);
+                //exit;
+                
+                set_error_handler('ErrorHandler');
+                $arrArgument = array(
+                    'column' => array("user"),
+                    'like' => array($arrArgument['user']),
+                    'field' => array('*')
+                );
+                $user = loadModel(MODEL_USER, "users_model", "select", $arrArgument);
+                restore_error_handler();
+                $jsondata["success"] = true;
+                $jsondata['user'] = $user;
+                echo json_encode($jsondata);
+                exit();
+            } else {
+                $jsondata["success"] = false;
+                echo json_encode($jsondata);
+            }
+        } else {
+            $jsondata["success"] = false;
+            $jsondata['datos'] = $result;
+            echo json_encode($jsondata);
+        }
     }
     ////////////////////////////////////////////////////end profile///////////////////////////////////////////
 }
