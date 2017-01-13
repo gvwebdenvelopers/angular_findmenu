@@ -24,6 +24,8 @@
   define('UTILS', SITE_ROOT . '/utils/');
   //resources
   define('RESOURCES', SITE_ROOT . '/resources/');
+  //files
+  define('MEDIA', SITE_ROOT .'/media/');
 
   //Includes de 2º nivel
   

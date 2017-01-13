@@ -46,11 +46,11 @@ function upload_files() {
         ////////////////////////////////////////////////////////////////////////////
         list($width, $height, $type, $attr) = @getimagesize($_FILES['file']['tmp_name']);
         if ($width > 150 || $height > 150){
-            $error .=   "Maximum width and height exceeded. Please upload images below 100x100 px size <br>";
+            $error .=   "Maximum width and height exceeded. Please upload images below 150x1 px size <br>";
         }
     }
 
-    $upfile = $_SERVER['DOCUMENT_ROOT'].'/media/'.$_FILES['file']['name'];
+    $upfile = $_SERVER['DOCUMENT_ROOT'].'/backend/media/'.$_FILES['file']['name'];
     if (is_uploaded_file($_FILES['file']['tmp_name'])){
         if (is_file($_FILES['file']['tmp_name'])) {
             $idUnico = rand();
@@ -58,7 +58,7 @@ function upload_files() {
             $_SESSION['filename'] = $nombreFichero;
             $copiarFichero = true;
             // I use absolute route to move_uploaded_file because this happens when i run ajax
-            $upfile = $_SERVER['DOCUMENT_ROOT'].'/media/'.$nombreFichero;
+            $upfile = $_SERVER['DOCUMENT_ROOT'].'/backend/media/'.$nombreFichero;
             //return $return=array('fich_name'=>$nombreFichero,'copi_fich'=>$copiarFichero,'upfile'=>$upfile);
         }else{
             $error .=   "Invalid File...";
@@ -74,11 +74,11 @@ function upload_files() {
                 return $return=array('resultado'=>false,'error'=>$error,'data'=>"");
             }
             //We need edit $upfile because now i don't need absolute route.
-            $upfile ='media/'.$nombreFichero;
+            $upfile ='backend/media/'.$nombreFichero;
             return $return=array('resultado'=>true , 'error'=>$error,'data'=>$upfile);
         }
         if($_FILES['file']['error'] !== 0) { //Assignarem a l'us default-avatar
-            $upfile = '/media/default-avatar.png';
+            $upfile = 'backend/media/default-avatar.png';
             return $return=array('resultado'=>true,'error'=>$error,'data'=>$upfile);
         }
     }else{
@@ -89,8 +89,8 @@ function upload_files() {
 function remove_files(){
 	$name = $_SESSION['filename'];
 
-	if(file_exists($_SERVER['DOCUMENT_ROOT'].'/media/'. $name)){
-		unlink($_SERVER['DOCUMENT_ROOT'].'/media/'. $name);
+	if(file_exists($_SERVER['DOCUMENT_ROOT'].'/backend/media/'. $name)){
+		unlink($_SERVER['DOCUMENT_ROOT'].'/backend/media/'. $name);
 		return true;
 	}else{
 		return false;

@@ -61,6 +61,14 @@
         <uri>update_pass</uri>
     </function>
     <function>
+        <name>upload_avatar</name>
+        <uri>upload_avatar</uri>
+    </function>
+    <function>
+        <name>delete_avatar</name>
+        <uri>delete_avatar</uri>
+    </function>
+    <function>
         <name>verify</name>
         <uri>activar</uri>
     </function>

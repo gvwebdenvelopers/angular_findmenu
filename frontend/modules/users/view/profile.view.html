@@ -52,19 +52,12 @@
             <br>
             <h1 class="form-profile-heading" id="username">{{profile.user}}</h1>
             <img id="avatar_user" src="{{profile.avatar}}" />
-
             <div class="msg" ></div>
             <br/>
-            <button id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
-
-            <br/>
-            <p>
-                <input class="submit_user" type="button" ng-click="submit()" name="submit" id="submitBtn_user" value="Guardar" 
-                ng-show="profile_form.inputName.$valid && profile_form.inputSurn.$valid && profile_form.inputPass.$valid && profile_form.inputBirth.$valid && profile_form.inputBank.$valid"/>
-            </p>
+            <button type="button" id="dropzone" dropzone="dropzoneConfig" class="dropzone" ></button>     
         </div>
         <!--- Lateral Derecho --->
-        <div class=" der">
+        <div >
             <label class="email pefil">Email:</label>
             <p>
                 <input required type="text" ng-pattern="/^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+(\.[a-z0-9-]+)*$/i" 
@@ -106,6 +99,13 @@
                     </select>
                     <span class="text-danger" ng-show="AlertMessage" ng-model="user.pob_error">{{user.pob_error}}</span>
                 </p>
+                 <br/>
+            <p>
+                <!--<input class="submit_user" type="button" ng-click="submit()" name="submit" id="submitBtn_user" value="Guardar" 
+                ng-show="profile_form.inputName.$valid && profile_form.inputSurn.$valid && profile_form.inputPass.$valid && profile_form.inputBirth.$valid && profile_form.inputBank.$valid"/>-->
+                
+                <!--<input class="submit_user" type="button" ng-click="submit()" name="submit" id="submitBtn_user" value="Guardar"/>-->
+            </p>
             </div>
         </div>
     </div>

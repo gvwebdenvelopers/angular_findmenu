@@ -264,7 +264,7 @@ app.controller('changepassCtrl', function ($route, $scope, services, $location, 
 //la variable user la recogemos de la consulta que realizamos en app.js
 app.controller('profileCtrl', function ($scope, UsersService, services, user, $location, CommonService, 
 load_country_prov_cities, $timeout, cookiesService) {
-    console.log(user.user);
+    //console.log(user.user);
     $scope.profile = {
         //cargamos datos en los campos
         name: user.user.name,
@@ -275,7 +275,6 @@ load_country_prov_cities, $timeout, cookiesService) {
         user:user.user.user,
         avatar: user.user.avatar,
         country:user.user.country,
-         //country:"user.user.country",
         province:user.user.province,
         city:user.user.city
             
@@ -375,11 +374,11 @@ load_country_prov_cities, $timeout, cookiesService) {
                 }
             });
             $scope.profile.cities = null;
-        } //else { //en ng-disabled
-           // $scope.provincias = null;
-            //$scope.poblaciones = null;
+        } else { //en ng-disabled
+            $scope.provincias = null;
+            $scope.poblaciones = null;
         }
-    
+    };
     
     $scope.resetValues = function () {
         var datos = {idCity: $scope.profile.province.id};
@@ -399,11 +398,11 @@ load_country_prov_cities, $timeout, cookiesService) {
         });
     };
     
-    /*
+    
     //dropzone
     $scope.dropzoneConfig = {
         'options': {
-            'url': 'backend/index.php?module=user&function=upload_avatar',
+            'url': 'backend/index.php?module=users&function=upload_avatar',
             addRemoveLinks: true,
             maxFileSize: 1000,
             dictResponseError: "Ha ocurrido un error en el server",
@@ -419,14 +418,9 @@ load_country_prov_cities, $timeout, cookiesService) {
                     $(".msg").addClass('msg_ok').removeClass('msg_error').text('Success Upload image!!');
                     $('.msg').animate({'right': '300px'}, 300);
                     
-                    //console.log(response.datos);
-                    $scope.user.avatar = response.datos;
+                    //console.log(response.data);
+                    $scope.profile.avatar = response.data;
                 
-                    var user = {usuario: $scope.user.usuario, avatar: response.datos, 
-                    tipo: $scope.user.tipo, nombre: $scope.user.nombre};
-                    cookiesService.SetCredentials(user);
-                    
-                    UserService.login();
                 } else {
                     $(".msg").addClass('msg_error').removeClass('msg_ok').text(response['error']);
                     $('.msg').animate({'right': '300px'}, 300);
@@ -437,11 +431,11 @@ load_country_prov_cities, $timeout, cookiesService) {
                     $('.msg').text('').removeClass('msg_ok');
                     $('.msg').text('').removeClass('msg_error');
                     var data = jQuery.parseJSON(file.xhr.response);
-                    services.post("user", "delete_avatar", JSON.stringify({'filename': data}));
+                    services.post("users", "delete_avatar", JSON.stringify({'filename': data}));
                 }
             }
     }};
-
+/*
     $scope.submit = function () {
         var pais, prov, pob, tipo = null;
         if (!$scope.user.pais.sISOCode) { //el usuario no escoge pais
