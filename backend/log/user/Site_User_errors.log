@@ -1911,3 +1911,51 @@ Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/contr
 Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
 
 -> Controller: users | Funciton:response 200
+12.01.2017 03:53:58  |  User:   | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 03:53:58  |  User:   | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 03:53:58  |  User:   | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 03:53:58  |  User:   | ERROR: [8] Undefined variable: timeout
+Notice on line 136 in file /var/www/angular_findmenu/backend/modules/users/model/DAO/users_dao.class.singleton.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:28:38  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:29:27  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:29:29  |  User:   | ERROR: [8] Use of undefined constant column - assumed 'column'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:29:29  |  User:   | ERROR: [8] Use of undefined constant like - assumed 'like'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:29:29  |  User:   | ERROR: [8] Use of undefined constant field - assumed 'field'
+Notice on line 373 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:55:42  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:58:21  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200
+12.01.2017 05:58:41  |  User:   | ERROR: [8] Undefined offset: 0
+Notice on line 99 in file /var/www/angular_findmenu/backend/modules/users/controller/controller_users.class.php
+
+-> Controller: users | Funciton:response 200

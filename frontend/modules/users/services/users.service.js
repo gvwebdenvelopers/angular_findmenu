@@ -21,10 +21,11 @@ app.factory("UsersService", ['$location', '$rootScope', 'services', 'cookiesServ
                 $rootScope.avatar = user.avatar;    
                 //El usuario que se registra por email no suele tener nombre, asi que mostramos su correo
                 //Esta funcionalidad no funciona por ahora ya que no reconoce si el nombre esta vacio.
-                if (user.name==='') {  
+    
+                if (user.name.length == 1) {  
                     $rootScope.profile = user.email;
                 } else {
-                    $rootScope.profile = user.name;       
+                       $rootScope.profile = user.name;     
                 }
                 
                 //redirigimos al home si nos logueamos
