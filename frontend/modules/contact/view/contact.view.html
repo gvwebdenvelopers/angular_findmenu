@@ -1,0 +1,45 @@
+<div class="contact">
+        <form id="contact_form" name="contact_form" class="details-holder">
+            <div class="modal-header">
+                <h1><C>CONTACT US</C></h1>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input ng-model="contact.inputName" class="text" type="text" id="inputName" name="inputName" placeholder="Name" class="input-block-level" dir="auto" maxlength="100">
+
+                </div>
+                <div>
+                    <input required ng-model="contact.inputEmail" class="text" type="text" id="inputEmail" name="inputEmail" placeholder="Email *" class="input-block-level" maxlength="100">
+                    <span class="msg_error" ng-show="contact_form.inputName.$error.required && (contact_form.inputName.$dirty || contact_form.inputName.$touched)">El campo es obligatorio</span>
+                </div>
+                <div>
+                    <label class="subject" for="sel1">Subject:</label>
+                    <select ng-model="contact.inputSubject" class="select" id="inputSubject" name="inputSubject" title="Choose subject">
+                    <option value="compra">Info relativa a tu compra</option>
+                    <option value="evento">Celebra un evento con nosotros</option>
+                    <option value="programacion">Contacta con nuestro dpto de programación</option>
+                    <option value="Trabaja">Trabaja con nosotros</option>
+                    <option value="proyectos">Deseas proponernos proyectos</option>
+                    <option value="sugerencias">Haznos sugerencias</option>
+                    <option value="reclamaciones">Atendemos tus reclamaciones</option>
+                    <option value="club">Club FindMenu</option>
+                    <option value="sociales">Proyectos sociales</option>
+                    <option value="novedades">Te avisamos de nuestras novedades</option>
+                    <option value="diferente">Algo diferente</option>
+                </select>
+                </div>
+                <div>
+                    <textarea required ng-model="contact.inputMessage" class="text" rows="4" name="inputMessage" placeholder="Message *" style="max-width: 100%;" dir="auto"></textarea>
+                </div>
+
+                <input type="hidden" name="token" value="contact_form" />
+
+                <input class="btn-read-more" type="submit" name="submit" id="submitBtn" value="send"
+                    ng-show="contact_form.inputEmail.$valid && contact_form.inputMessage.$valid"
+                    ng-click="SubmitContact()"/>
+                <img src="img/ajax-loader.gif" alt="ajax loader icon" class="ajaxLoader" /><br/><br/>
+                <div id="resultMessage" ng-class="class" >{{message}}</div>
+                <socialnet/>
+            </div>
+        </form>
+    </div>

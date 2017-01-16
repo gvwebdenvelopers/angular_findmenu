@@ -140,7 +140,7 @@ li.fb a{
     background-position: center center;
     padding:110px;
     margin:1%;
-  
+
 }
 
 /*quitamos el padding para que este a la izquiereda*/
@@ -189,7 +189,6 @@ ul.icons{
 .msg_error {
     color: red;
     padding:1%;
-    margin:1%;
 }
 
 /*mensajes de sucesos*/
